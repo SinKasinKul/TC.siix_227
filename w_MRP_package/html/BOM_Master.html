@@ -1,0 +1,63 @@
+<table align="center" width="90%">
+  <tr valign="TOP">
+    <td align="center">
+
+      <table align="center" width="100%" style="background-color: #e6e6e6;" class='table'>
+        <tr>
+            <td width="30%" align="center"><H3><I><B>BOM Master</I></H3></td>
+        </tr>
+        <tr>
+            <td align="center">
+              <table align="center" style="background-color: #FFFFFF;" class='table'>
+                <tr>
+                  <td align="right">FG Code : </td>
+                  <td><div style='margin-top: 10px;' id='pI_ITEM_CD_FG'></td>
+                  <td align="right">FG Decs : </td>
+                  <td align="left" colspan="3"><span id="I_FG_DESC"></span></td>
+                </tr>
+                <tr>
+                  <td align="right">Material Code : </td>
+                  <td><div style='margin-top: 10px;' id='pI_ITEM_CD_MAT'></td>
+                  <td align="right">Material Decs : </td>
+                  <td align="left" colspan="3"><span id="I_MAT_DESC"></span></td>
+                </tr>
+                <tr>
+                  <td align="right">Tray Usage : </td>
+                  <td><input type="text" type="text" id="pI_TRAY_USAGE"></td>
+                  <td align="right">Tray Support : </td>
+                  <td><input type="text" type="text" id="pI_TRAY_SUPPORT"></td>
+                  <td align="right">Box Usage : </td>
+                  <td><input type="text" type="text" id="pI_BOX_USAGE"></td>
+                </tr>
+                <tr>
+                  <td align="right">Active : </td>
+                  <td><div style='margin-top: 10px;' id='pI_ACTIVE'></div></td>
+                  <td align="center" colspan="4">
+                    <input id="Save" type="button" value="Save" class="btn text-muted text-center btn-success" size="10"/>
+                    <input id="Clear" type="button" value="Clear" class="btn text-muted text-center btn-info" size="10"/>
+                  </td>
+                </tr>
+              </table>
+            </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <div id= "gridBomMaster"></div>
+            <input id="ItemLoad" type="button" value="Load Data" class="btn text-muted text-center btn-info" size="10"/>
+          </td>
+        </tr>
+        <tr>
+            <td align="right" colspan="2">
+                    <hr>
+            </td>
+        </tr>
+       </table>
+       <input type="hidden" type="text" id="pBOMID">
+       <input type="hidden" type="text" id="vI_ITEM_CD_FG">
+       <input type="hidden" type="text" id="vI_ITEM_CD_MAT">
+      </td>
+  </tr>
+  <tr>
+      <td colspan="2">&nbsp;</td>
+  </tr>
+</table>

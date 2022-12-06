@@ -1,0 +1,10 @@
+[
+    {
+		  "TypeID": "001",
+        "TypeName": "FG"
+    },
+    {
+		  "TypeID": "002",
+        "TypeName": "Material"
+    }
+]

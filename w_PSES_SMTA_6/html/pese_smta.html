@@ -1,0 +1,115 @@
+<table align="center" width="90%">
+  <tr valign="TOP">
+    <td align="center">
+
+      <table align="center" width="100%" style="background-color: #e6e6e6;" >
+        <tr>
+            <td width="30%" align="center"><H3><I><B>Panasonic Packing  For 6 PCB.</B></I></H3></td>
+            <td align="center" colspan="5">&nbsp;
+              <table align="center" width="98%">
+                <tr>
+                  <td align="right" width='10%'><font size="4"><I><B>Model : </B></I></font></td>
+                  <td  width='60%' style="background-color: #ffffff;"><font size="4"><I><B><div id='ModelMain'></div></B></I></font></td>
+                  <td align="right" width='10%'><font size="4"><I><B>Seiban : </B></I></font></td>
+                  <td  width='20%' style="background-color: #ffffff;"><font size="4"><I><B><div id='SeibanMain'></div></B></I></font></td>
+                </tr>
+              </table>
+              <input type="text" id="PCMC" value="<?=gethostbyaddr($_SERVER['REMOTE_ADDR']);?>" size="20" readonly hidden>
+              <input type="text" id="SeibanMainH" value="" readonly hidden>
+              <input type="text" id="ModelMainH" value="" readonly hidden>
+            </td>
+        </tr>
+        <!--tr>
+            <td align="right" colspan="2">
+                    <hr>
+            </td>
+        </tr-->
+        <tr>
+            <td colspan="3" align='center'>
+              <font size="3">
+               <table width='100%'>
+                 <tr>
+                   <td align='center' width = "50%">
+                     <table align="center" width="100%">
+                       <tr>
+                         <td align="right"><I><B>Lot No.::</B></I></td>
+                         <td>&nbsp;<input type="text" id="LotNo" value="" ></td>
+                         <td align="right"><I><B>Check By::</B></I></td>
+                         <td ><I><B><input type="text" id="UserChk" value="" readonly></td>
+                       </tr>
+                       <tr>
+                         <td align="right"></td>
+                         <td></td>
+                         <td align="right"><I><B>Shift::</B></I></td>
+                         <td ><I><B><input type="text" id="Shift" value="" readonly></td>
+                       </tr>
+                       <tr>
+                         <td align="right"></td>
+                         <td></td>
+                         <td align="right"><I><B>Qty::</B></I></td>
+                         <td><input type="text" id="ScanQty" value="" size="5"></td>
+                       </tr>
+                     </table>
+                     </font>
+                   </td>
+                   <td width='60%' align='center'>
+                     <font size="5">
+                       <table align="center" width="100%">
+                         <tr>
+                           <td><font color='green'><B>OK =</B></font></td>
+                           <td>&nbsp;&nbsp;&nbsp;<font color='green'><B><span id="CountOK">0</span><B></font>&nbsp;&nbsp;&nbsp;</td>
+                           <td><font color='red'><B>NG =</B></font></td>
+                           <td>&nbsp;&nbsp;&nbsp;<font color='red'><B><span id="CountNG">0</span><B></font>&nbsp;&nbsp;&nbsp;</td>
+                         </tr>
+                         <tr>
+                           <td><font color='red'><B>MIX =</B></font></td>
+                           <td>&nbsp;&nbsp;&nbsp;<font color='red'><B><span id="CountMIX">0</span><B></font>&nbsp;&nbsp;&nbsp;</td>
+                           <td><font color='red'><B>No Data =</B></font></td>
+                           <td>&nbsp;&nbsp;&nbsp;<font color='red'><B><span id="CountND">0</span><B></font>&nbsp;&nbsp;&nbsp;</td>
+                         </tr>
+                         <tr>
+                           <td width='30%' align='right'><B>Alert Msg ::</B></td>
+                           <td colspan="3">&nbsp;&nbsp;&nbsp;<B><span id="AlertMsg">-</span><B></td>
+                         </tr>
+                         <tr>
+                           <td colspan="4">&nbsp;&nbsp;&nbsp;</td>
+                         </tr>
+                         <tr>
+                           <td colspan="4" align='right'>
+                             <input id="SaveLot" type="button" value="Save and load data" class="btn text-muted text-center btn-success" size="10"/>
+                             <input id="EditLot" type="button" value="Edit" class="btn text-muted text-center btn-warning" size="10"/>
+                           </td>
+                         </tr>
+                       </table>
+                     </font>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td align="center" colspan="2">
+                     <hr>
+                     <table align="center" width="100%">
+                       <tr>
+                         <td align='right' width="40%"><font size="4"><I><B>Barcode ::</B></I></td>
+                         <td><input type="text" id="BarcodeScan" style="text-transform: uppercase" value="" ></td>
+                       </tr>
+                      </table>
+                     <div id='gridBarcodeScan'></div>
+                   </td>
+                 </tr>
+               </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+  <tr>
+      <td>
+      <hr>
+      </td>
+  </tr>
+</table>

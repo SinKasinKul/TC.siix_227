@@ -1,0 +1,40 @@
+<table align="center" width="90%">
+  <tr valign="TOP">
+    <td align="center">
+
+      <H4><B>Plans compare with stock WIP</B></H4>
+      <div id='gridPlan'></div>
+      <button id="reloadPlan">Reload</button>
+      <button id="ExportPlan">Export</button>
+
+    </td>
+  </tr>
+  <tr>
+      <td colspan="2">&nbsp;</td>
+  </tr>
+</table>
+
+<div id="wPlan">
+    <div id="windowHeader">
+        <span>Update Plans</span>
+    </div>
+    <div style="overflow: hidden;">
+
+      <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Customer:</B></td>
+                 <td> <div style='margin-top: 10px;' id='WIP_CUS'> </td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Total Qty:</B></td>
+                 <td> <input type="text" id='WIP_QTY' size="34"/> </td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center' colspan="2">
+                   <input type="text" id="vSave" class="btn text-muted text-center btn-success sizeMenu" value="Save">
+                   <input type="text" id="vCancel" class="btn text-muted text-center btn-danger sizeMenu" value="Cancel">
+                 </td>
+            </tr>
+      </table>
+    </div>
+  </div>

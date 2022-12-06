@@ -1,0 +1,99 @@
+<table align="center" width="90%">
+  <tr valign="TOP">
+    <td align="center">
+
+      <table align="center" width="100%" style="background-color: #e6e6e6;" >
+        <tr>
+            <td width="10%" align="right"><H3><I><B>SMT B Log</B></I></H3></td>
+            <td width="15%" align="center" colspan="5">&nbsp;
+              <table align="center" width="100%">
+                <tr>
+                  <td align="right"><I><B>Check By::</B></I></td>
+                  <td ><I><B><input type="text" id="UserChk" value="" readonly></td>
+                  <td align="right"><I><B>Shift::</B></I></td>
+                  <td ><I><B><input type="text" id="Shift" value="" readonly></td>
+                  <td align="right"><I><B>Lot No.::</B></I></td>
+                  <td>&nbsp;<input type="text" id="LotNo" style="text-transform: uppercase" value="" size="10"></td>
+                  <td align="right"><I><B>Qty::</B></I></td>
+                  <td>&nbsp;<input type="text" id="ScanQty" value="" size="5"></td>
+                  <td align="right"><I><B>MC::</B></I></td>
+                  <td>&nbsp;<input type="text" id="PCMC" value="<?=gethostbyaddr($_SERVER['REMOTE_ADDR']);?>" size="20" readonly></td>
+                  <td><input id="SaveLot" type="button" value="Save" class="btn text-muted text-center btn-success" size="10"/></td>
+                  <td><input id="EditLot" type="button" value="Edit" class="btn text-muted text-center btn-warning" size="10"/></td>
+                  <td><input id="EditLotQty" type="button" value="Edit Qty" class="btn text-muted text-center btn-primary" size="10"/></td>
+                </tr>
+              </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" colspan="2">
+                    <hr>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align='center'>
+              <font size="3">
+               <table width='100%'>
+                 <tr>
+                   <td align='center'>
+                     <table>
+                       <tr>
+                         <td><B>Total Seiban in PCB::</B></td>
+                         <td>&nbsp;&nbsp;&nbsp;<font color='blue'><B><span id="TotalSeibanPCB">0</span><B></font>&nbsp;&nbsp;&nbsp;</td>
+                         <td><B>Total Qty::</B></td>
+                         <td>&nbsp;&nbsp;&nbsp;<font color='blue'><B><span id="TotalQty">0</span><B></font>&nbsp;&nbsp;&nbsp;</td>
+                       </tr>
+                     </table>
+                     <hr>
+                     <table>
+                       <tr>
+                         <td><I><B>Seiban in PCB ::</B></I></td>
+                         <td><div id="TypeSeiban"></div></td>
+                         <td><I><B>Scan W/R ::</B></I></td>
+                         <td><input type="text" id="ScanWR" value=""></td>
+                       </tr>
+                     </table>
+                     </font>
+                   </td>
+                   <td width='60%' align='center'>
+                     <font size="3">
+                     <table width='100%'>
+                       <tr>
+                         <td width='10%'><font color='green'><B>OK ::</B></font></td>
+                         <td width='10%'>&nbsp;&nbsp;&nbsp;<font color='green'><B><span id="CountOK">0</span><B></font>&nbsp;&nbsp;&nbsp;</td>
+                         <td width='20%' align='right'><B>Alert Msg ::</B></td>
+                         <td>&nbsp;&nbsp;&nbsp;<B><span id="AlertMsg">-</span><B></td>
+                       </tr>
+                     </table>
+                     </font>
+                     <hr>
+                     <table>
+                       <tr>
+                         <td><I><B>QR Code Scan::</B></I></td>
+                         <td><input type="text" id="ScanQRcode" value=""></td>
+                       </tr>
+                     </table>
+
+                   </td>
+                 </tr>
+                 <tr>
+                   <td align="center" ><div id='gridWRCtrlScan'></div></td>
+                   <td align="center" ><div id='gridQRcodeSMTB'></div></td>
+                 </tr>
+               </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+  <tr>
+      <td>
+      <hr>
+      </td>
+  </tr>
+</table>

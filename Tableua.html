@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<httpProtocol>
+  <customHeaders>
+    <add name="X-Frame-Options" value="SAMEORIGIN" />
+  </customHeaders>
+</httpProtocol>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+    <script type='text/javascript' src='http://203.151.67.77:8000/javascripts/api/viz_v1.js'></script>
+
+
+  </head>
+  <body>
+    <div id='Overview' class='tableauPlaceholder' style='width: 1920px; height: 894px;'>
+      <object class='tableauViz' width='1920' height='894' style='display:none;'>
+        <param name='host_url' value='http%3A%2F%2F203.151.67.77%3A8000%2F' />
+        <param name='embed_code_version' value='3' />
+        <param name='site_root' value='&#47;t&#47;SuperStoreCompany' />
+        <param id='name' name='name' value = 'Superstore_Ananlysis&#47;Overview'/>
+        <param name='tabs' value='no' />
+        <param name='toolbar' value='yes' />
+        <param name='showAppBanner' value='false' />
+      </object>
+    </div>
+  </body>
+
+  <script type='text/javascript'>
+    $(document).ready(function () {
+      var Overview = 'Overview';
+      var Product = 'Product';
+      $('#Overview').hide();
+
+      var element = document.getElementById("name");
+      //element.setAttribute("value", 'Superstore_Ananlysis&#47;Product');
+
+      setInterval(function(){
+        //  location.reload(true);
+        }, 1000 * 30);
+    });
+  </script>
+
+</html>

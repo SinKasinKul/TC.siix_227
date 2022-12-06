@@ -1,0 +1,68 @@
+<table align="center" width="90%">
+  <tr valign="TOP">
+    <td align="center">
+
+      <table align="center" width="100%" style="background-color: #e6e6e6;" >
+        <tr>
+            <td width="30%" align="center"><H3><I><B>Traceability Check Main</B></I></H3></td>
+            <td align="center" colspan="5">&nbsp;
+
+              <input type="text" id="PCMC" value="<?=gethostbyaddr($_SERVER['REMOTE_ADDR']);?>" size="20" readonly hidden>
+              <input type="text" id="SeibanMainH" value="" readonly hidden>
+              <input type="text" id="ModelMainH" value="" readonly hidden>
+            </td>
+        </tr>
+        <!--tr>
+            <td align="right" colspan="2">
+                    <hr>
+            </td>
+        </tr-->
+        <tr>
+            <td colspan="3" align='center'>
+
+               <table width='100%'>
+                 <tr>
+                   <td align='center' width = "50%">
+
+
+                   </td>
+                   <td width='60%' align='center'>
+                     <font size="5">
+
+                     </font>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td align="center" colspan="2">
+                     <hr>
+                     <table align="center" width="100%">
+                       <tr>
+                         <td align='right' width="40%"><font size="4"><I><B>Barcode ::</B></I></td>
+                         <td><input type="text" id="BarcodeScan" style="text-transform: uppercase" value="" >
+                             <!--input id="ReOK" type="button" value="OK" class="btn text-muted text-center btn-success" size="10"/>
+                             <input id="ReDamage" type="button" value="Damage" class="btn text-muted text-center btn-danger" size="10"/>
+                             <input id="ReScrap" type="button" value="Scrap" class="btn text-muted text-center btn-danger" size="10"/>
+                             <input id="ExitApp" type="button" value="New Model" class="btn text-muted text-center btn-info" size="10"/ -->
+                         </td>
+                       </tr>
+                      </table>
+                     <div id='gridBarcodeScan'></div>
+                   </td>
+                 </tr>
+               </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+  <tr>
+      <td>
+      <hr>
+      </td>
+  </tr>
+</table>

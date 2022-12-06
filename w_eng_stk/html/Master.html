@@ -1,0 +1,83 @@
+<table align="center" width="90%">
+  <tr valign="TOP">
+    <td align="center">
+
+      <table align="center" width="100%" style="background-color: #e6e6e6;">
+        <tr>
+            <td width="100%" align="center" colspan="2"><H3><I><B>Master</I></H3></td>
+        </tr>
+        <tr>
+        <tr>
+            <td width="20%" align="center" valign='TOP'>
+              <table align="center" class='table'>
+                <tr>
+                  <td align="center" colspan="2"><H3><B>Type Master</B></H3></td>
+                <tr>
+                  <td align="right"><B>Type : </B></td>
+                  <td><input type="text" type="text" id="pI_TYPE_NAME"></td>
+                </tr>
+                <tr>
+                  <td align="center" colspan="2">
+                    <input id="SaveType" type="button" value="Save" class="btn text-center btn-success" size="10"/>
+                    <input id="ClearType" type="button" value="Clear" class="btn text-center btn-info" size="10"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" colspan="2">
+                    <div id= "gridTypeMaster"></div>
+                  </td>
+                </tr>
+              </table>
+              <input type="hidden" type="text" id="pI_TYPE_ID">
+            </td>
+          <td align="center" valign="TOP">
+            <table align="center" class='table'>
+              <tr>
+                <td align="center" colspan="10"><H3><B>Item Master</B></H3></td>
+              <tr>
+                <td align="right"><B>Item Code: </B></td>
+                <td><input type="text" type="text" id="pI_Item_CD"></td>
+                <td align="right"><B>Item DESC: </B></td>
+                <td colspan="3"><input type="text" type="text" id="pI_Item_DESC"></td>
+                <td align="right"><B>Use/Month: </B></td>
+                <td><input type="text" type="text" id="pI_USE_PRE_MONTH"></td>
+                <td align="right"><B>Lead Time (Day): </B></td>
+                <td><input type="text" type="text" id="pI_LEAD_TIME_DAY"></td>
+              </tr>
+              <tr>
+                <td align="right"><B>Safety Stock: </B></td>
+                <td><input type="text" type="text" id="pI_SAFETY_STK"></td>
+                <td align="right"><B>Type: </B></td>
+                <td><div style='margin-top: 10px;' id='pI_TYPE'></div></td>
+                <td align="right"><B>Emp: </B></td>
+                <td><input type="text" type="text" id="pI_EMP"></td>
+                <td align="right">
+                  <input id="SaveItem" type="button" value="Save" class="btn text-center btn-success" size="10"/>
+                  <input id="ClearItem" type="button" value="Clear" class="btn text-center btn-info" size="10"/>
+                </td>
+                <td></td>
+                <td align="right"><B></B></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td align="center" colspan="10">
+                  <div id= "gridItemMaster"></div>
+                </td>
+              </tr>
+            </table>
+            <input type="hidden" type="text" id="pI_ITEM_ID">
+          </td>
+        </tr>
+        <tr>
+            <td align="right" colspan="2">
+                    <hr>
+            </td>
+        </tr>
+       </table>
+
+      </td>
+  </tr>
+  <tr>
+      <td colspan="2">&nbsp;</td>
+  </tr>
+</table>

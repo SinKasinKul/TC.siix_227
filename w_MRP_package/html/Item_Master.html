@@ -1,0 +1,69 @@
+<table align="center" width="90%">
+  <tr valign="TOP">
+    <td align="center">
+
+      <table align="center" width="100%" style="background-color: #e6e6e6;" class='table'>
+        <tr>
+            <td width="30%" align="center"><H3><I><B>Item Master</I></H3></td>
+            <td align="right" colspan="5"><H3><I><B>Date :: <span id= "CurDate"> </span> &nbsp;</B></I></H3></td>
+        </tr>
+        <tr>
+            <td width="30%" align="center" valign='TOP'>
+              <table align="center" style="background-color: #FFFFFF;" class='table'>
+                <tr>
+                  <td align="right">Item Code : </td>
+                  <td><input type="text" type="text" id="pI_ITEM_CD"></td>
+                <tr>
+                  <td align="right">Description : </td>
+                  <td><input type="text" type="text" id="pI_ITEM_DESC"></td>
+                </tr>
+                <tr>
+                  <td align="right">Model : </td>
+                  <td><input type="text" type="text" id="pI_ITEM_MODEL"></td>
+                </tr>
+                <tr>
+                  <td align="right">Type : </td>
+                  <td><div style='margin-top: 10px;' id='pI_TYPE'></div></td>
+                </tr>
+                <tr>
+                  <td align="right">MOQ : </td>
+                  <td><input type="text" type="text" id="pI_MOQ"></td>
+                </tr>
+                <tr>
+                  <td align="right">SPQ : </td>
+                  <td><input type="text" type="text" id="pI_SPQ"></td>
+                </tr>
+                <tr>
+                  <td align="right">MAX Stock : </td>
+                  <td><input type="text" type="text" id="pI_MAX_STK"></td>
+                </tr>
+                <tr>
+                  <td align="right">Active : </td>
+                  <td><div style='margin-top: 10px;' id='pI_ACTIVE'></div></td>
+                </tr>
+                <tr>
+                  <td align="center" colspan="2">
+                    <input id="Save" type="button" value="Save" class="btn text-muted text-center btn-success" size="10"/>
+                    <input id="Clear" type="button" value="Clear" class="btn text-muted text-center btn-info" size="10"/>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td align="center">
+              <div id= "gridItemMaster"></div>
+              <input id="ItemLoad" type="button" value="Load Data" class="btn text-muted text-center btn-info" size="10"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" colspan="2">
+                    <hr>
+            </td>
+        </tr>
+       </table>
+       <input type="hidden" type="text" id="pSuplierID">
+      </td>
+  </tr>
+  <tr>
+      <td colspan="2">&nbsp;</td>
+  </tr>
+</table>

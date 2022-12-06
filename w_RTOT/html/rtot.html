@@ -1,0 +1,169 @@
+<div class="container">
+  <br>
+    <div class="row">
+      <div class="col-ls-12">
+
+        <div class="card border-primary mb-4">
+          <div class="card-header text-white bg-primary">
+            <h3>ข้อมูลการมาทำงาน (Working Day)</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <label class="form-check-label" for="pTypeNormal"> Department :: </label>
+                <input type="text" id="pDept" value="<?=$_GET['dept']?>" readonly>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-12">
+                <label class="form-check-label" for="pTypeNormal"> Employee ID (6 digits) :: </label>
+                <input type="text" id="pEmpID">
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-12">
+                <label class="form-check-label" for="pEmpGroup"> Group </label> <span id="vpEmpGroup"></span>
+                <div id="pEmpGroup"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label class="form-check-label" for="pEmpGroup"> Bus </label> <span id="vpBus"></span>-<span id="vpBusL"></span>
+                <div id="pBus"></div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12"><u><b><h4>กะ (Shift)</h4></b></u></div>
+                <div class="col-12">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="pShift" id="pDayShift" value="D">
+                    <label class="form-check-label" for="pDayShift">กะกลางวัน (Day shift)</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="pShift" id="pNightShift" value="N">
+                    <label class="form-check-label" for="pNightShift">กะกลางคืน (Night shift)</label>
+                  </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12"><u><b><h4>วันทำงาน (Working day)</h4></b></u></div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="pType" id="pTypeNormal" value="Normal">
+                    <label class="form-check-label" for="pTypeNormal">วันทำงานปกติ (Normal working day)</label>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="pType" id="pTypeHoliday" value="Holiday">
+                    <label class="form-check-label" for="pTypeHoliday">วันหยุด (Weekend working day)</label>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="cNormal">
+        <hr>
+        <div class="card border-info mb-3">
+          <div class="card-header text-white bg-info mb-3">
+            <h4>วันทำงานปกติ (Normal working day)</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                  <label class="form-check-label" for="pTypeNormal"> วันที่ (Date)</label>
+                  <input type="text" id="pOTDate">
+              </div>
+              <div class="col-6">
+                <div class="row">
+                    <div class="col-12"><u><b>มาทำ OT ใช่หรือไม่</b></u></div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="pConfirm" id="pConfirmYes" value="1" checked>
+                        <label class="form-check-label" for="pConfirmYes">ใช่ (Yes)</label>
+                      </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="pConfirm" id="pConfirmNo" value="0">
+                        <label class="form-check-label" for="pConfirmNo">ไม่ใช่ (No)</label>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row center">
+                <div class="col-12">
+                  <button id= "vbSaveNormal" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div id="cHoliday">
+          <hr>
+        <div class="card border-info mb-3">
+          <div class="card-header text-white bg-info mb-3">
+            <h4>มาทำงานในวันหยุด (Weekend Working Day)</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                    <div class="col-12"><u><b><h4>ยืนยันการมาทำงานในวันหยุด (Confirm)</h4></b></u></div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="pConfirmH" id="pConfirmSat" value="Sat">
+                        <label class="form-check-label" for="pConfirmSat">วันเสาร์ (Saturday)</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="pConfirmH" id="pConfirmSun" value="Sun">
+                        <label class="form-check-label" for="pConfirmSun">วันอาทิตย์ (Sunday)</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="pConfirmH" id="pConfirmWE" value="SatSun">
+                        <label class="form-check-label" for="pConfirmSatSun">วันเสาร์และวันอาทิตย์ (Saturday and Sunday)</label>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-6">
+                <label class="form-check-label" for="pOTDateSat"> วันเสาร์ (Saturday)</label>
+                <input type="text" id="pOTDateSat">
+              </div>
+              <div class="col-6">
+                <label class="form-check-label" for="pOTDateSun"> วันอาทิตย์ (Sunday)</label>
+                <input type="text" id="pOTDateSun">
+              </div>
+            </div><br>
+            <div class="row center">
+                <div class="col-12">
+                  <button id= "vbSaveHoliday" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <br>
+</div>
+<script type="text/javascript" src="js/widgets/rtot.js"></script>
