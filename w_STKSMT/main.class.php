@@ -48,6 +48,9 @@ $stksmt = new stksmt;
 		case 'STBL_STK_UPD_RETURN':
 			$stksmt->STBL_STK_UPD_RETURN($_GET);
 			break;
+		case 'InsConfirmSCR':
+			$stksmt->InsConfirmSCR($_GET);
+			break;
 
 	}
 ?>

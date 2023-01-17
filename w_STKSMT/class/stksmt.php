@@ -222,5 +222,24 @@ class STKSMT
     $query = sqlsrv_query( $DB, $stmt, $params);
     $d = Utility::jsonMSSQL($query);
   }
+
+  public function InsConfirmSCR($frm)
+  {
+    $DB = connect_mssql::DB();
+    $ItemCD = $frm['ItemCD'];
+    $Batch = $frm['Batch'];
+    $Qty = $frm['Qty'];
+    $Emp = $frm['Emp'];
+
+    $stmt = "EXEC [STBL_STOCK_SMT].[dbo].[STBL_STK_INS_CONFIRMSCR] ?, ?, ?, ?";
+    $params = array(
+      array($ItemCD, SQLSRV_PARAM_IN),
+      array($Batch, SQLSRV_PARAM_IN),
+      array($Qty, SQLSRV_PARAM_IN),
+      array($Emp, SQLSRV_PARAM_IN)
+    );
+    $query = sqlsrv_query( $DB, $stmt, $params);
+    $d = Utility::jsonMSSQL($query);
+  }
 }
 ?>
