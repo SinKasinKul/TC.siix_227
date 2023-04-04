@@ -219,7 +219,7 @@ function STBL_REP_INS_SEIBAN(Line,Seiban,Emp) {
    });
 }
 
-function ReadTagCurrent(Q){
+/*function ReadTagCurrent(Q){
   //console.log(Q);
   var tagRead = Q;
   var tagReadArr = tagRead.split('@');
@@ -239,6 +239,49 @@ function ReadTagCurrent(Q){
 
     insReplSMT(vLine,vTable,vItemNoCurr,vQty,vBatchCurr,"",vUserID);
     //countReplSMT(vLine,vTable,vItemNoCurr);
+  }
+  else
+  {
+    $('#vStatus').html('QR Not Match');
+    $('#tableMain tr').children('td, th').css('background-color','#ff0a0a');
+    $('#vSapQrCurrent').jqxInput({disabled: false });
+    $('#vSapQrCurrent').val("");
+    $('#vSapQrCurrent').focus();
+  }
+
+}*/
+
+function ReadTagCurrent(Q){
+  //console.log(Q);
+  var tagRead = Q;
+  var tagReadArr = tagRead.split('@');
+  var vBatchNo = tagReadArr[2];
+  var vItemNo = tagReadArr[3];
+
+  var vLentagReadArr = tagReadArr.length;
+  //console.log(tagReadArr[1]);
+  if(tagReadArr[1] == "SIIX20")
+  {
+    vItemNoCurr = tagReadArr[3];
+    vBatchCurr = tagReadArr[2];
+    vQty = tagReadArr[4];
+
+    $('#vSapQrCurrent').val(vBatchCurr);
+    $("#vStatus").html(vItemNoCurr);
+    $('#tableMain tr').children('td, th').css('background-color','#08ca0e');
+
+    insReplSMT(vLine,vTable,vItemNoCurr,vQty,vBatchCurr,"",vUserID);
+    //countReplSMT(vLine,vTable,vItemNoCurr);
+  }else if(tagReadArr[1] == "06"){
+    vItemNoCurr = tagReadArr[3].substring(1,tagReadArr[3].length);
+    vBatchCurr = tagReadArr[5].substring(1,tagReadArr[5].length);
+    vQty = tagReadArr[4].substring(1,tagReadArr[4].length);;
+
+    insReplSMT(vLine,vTable,vItemNoCurr,vQty,vBatchCurr,"",vUserID);
+
+    $('#vSapQrCurrent').val(vBatchCurr);
+    $("#vStatus").html(vItemNoCurr);
+    $('#tableMain tr').children('td, th').css('background-color','#08ca0e');
   }
   else
   {

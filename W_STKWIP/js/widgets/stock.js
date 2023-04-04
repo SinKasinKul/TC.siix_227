@@ -123,6 +123,8 @@ $("#gridOnHandDetail").jqxGrid(
               height: 543,
               altrows: true,
               sortable: true,
+              showfilterrow: true,
+              filterable: true,
               showstatusbar: true,
               statusbarheight: 25,
               showaggregates: true,
@@ -144,11 +146,14 @@ $("#gridOnHandDetail").jqxGrid(
                 { text: 'IN Qty', datafield: 'IN_QTY', width: 90, align: 'center', cellsalign: 'right', cellsrenderer: CHK_QTY,cellsformat: 'F0', aggregates: ['sum']},
                 { text: 'OUT Qty', datafield: 'OUT_QTY', width: 90, align: 'center', cellsalign: 'right', cellsrenderer: CHK_QTY,cellsformat: 'F0', aggregates: ['sum']},
                 //{ text: 'Cart', datafield: 'CART', width: 100, align: 'center', cellsalign: 'center'},
-                { text: 'Location', datafield: 'LOCATION', width: 100, align: 'center', cellsalign: 'center'},
+                { text: 'Location', datafield: 'LOCATION', width: 100, filtertype: 'checkedlist', align: 'center', cellsalign: 'center'},
                 { text: 'Operator', datafield: 'STAFF_NAME', width: 100, align: 'center', cellsalign: 'center'},
                 { text: 'Date', datafield: 'DATE_UPDATE', width: 150, align: 'center', cellsalign: 'center'}
               ]
           });
+  $("#csvExportHis").click(function () {
+      $("#gridOnHandHis").jqxGrid('exportdata', 'csv', 'gridOnHandHis');
+  });
 });
 
 function gridOnHandTotal() {

@@ -1,0 +1,11 @@
+<?php
+require_once('../common.php');
+/*------------------Class-----------------------*/
+require_once(CLS.'plan'.PHP);
+require_once(CLS.'eder'.PHP);
+require_once(CLS.'npi'.PHP);
+require_once(CLS.'rtot'.PHP);
+require_once(CLS.'solder'.PHP);
+//require_once(CLS.'total_income'.PHP);
+//require_once("../".CLS.UTILITY);
+?>

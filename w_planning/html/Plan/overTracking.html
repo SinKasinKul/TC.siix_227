@@ -1,0 +1,39 @@
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+
+    <div class="container-fluid mt-3">
+      <?php require_once('html/Content.html');?>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                          <div class="header-right">
+                            <table>
+                              <tr>
+                                <td>Start Date :: </td>
+                                <td><input id='startDate' type="text"/></td>
+                                <td>End Date :: </td>
+                                <td><input id='endDate' type="text"/></td>
+                                <td><button id= "vbtReload" class="btn btn-primary">Reload</button></td>
+                              </tr>
+                            </table>
+                          </div>
+                            <h4 class="card-title">Tracking Overe 7 days Table</h4>
+                            <div id="gridPlan"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<?php require_once('html/script.html');?>
+<script type="text/javascript" src="js/widgets/Content.js"></script>
+<script type="text/javascript" src="js/widgets/plan/overTracking.js"></script>

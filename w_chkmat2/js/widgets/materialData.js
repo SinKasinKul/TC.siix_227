@@ -220,10 +220,10 @@ function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
     var vItemNo = tagReadArr[3];
 
     var vLentagReadArr = tagReadArr.length;
-    if(vLentagReadArr == 7)
+    if(tagReadArr[1] == "SIIX20")
     {
-      vItemNoCurr = vItemNo;
-      vBatchCurr = vBatchNo;
+      vItemNoCurr = tagReadArr[3];
+      vBatchCurr = tagReadArr[2];
 
       $('#vSapQrCurrent').val(vBatchCurr);
       $("#vStatus").html(vItemNoCurr);
@@ -232,6 +232,15 @@ function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
       $('#vSapQrReplace').focus();
 
       countReplSMT(vLine,vTable,vItemNoCurr);
+    }else if(tagReadArr[1] == "06"){
+      vItemNoCurr = tagReadArr[3].substring(1,tagReadArr[3].length);
+      vBatchCurr = tagReadArr[5].substring(1,tagReadArr[5].length);
+
+      $('#vSapQrCurrent').val(vBatchCurr);
+      $("#vStatus").html(vItemNoCurr);
+      $('#tabletest tr').children('td, th').css('background-color','#0adeff');
+      $('#vSapQrReplace').jqxInput({disabled: false });
+      $('#vSapQrReplace').focus();
     }
     else
     {
@@ -248,15 +257,16 @@ function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
     //console.log(Q);
     var tagRead = Q;
     var tagReadArr = tagRead.split('@');
-    var vBatchNo = tagReadArr[2];
-    var vItemNo = tagReadArr[3];
-    var vQty = tagReadArr[4];
+    //var vBatchNo = tagReadArr[2];
+    //var vItemNo = tagReadArr[3];
+    //var vQty = tagReadArr[4];
 
     var vLentagReadArr = tagReadArr.length;
-    if(vLentagReadArr == 7)
+    if(tagReadArr[1] == "SIIX20")
     {
-      vItemNoRepl = vItemNo;
-      vBatchRepl = vBatchNo;
+      vItemNoRepl = tagReadArr[3];
+      vBatchRepl = tagReadArr[2];
+      vQty = tagReadArr[4];
 
       if(vItemNoRepl == vItemNoCurr && vBatchRepl != vBatchCurr)
       {
@@ -277,8 +287,31 @@ function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
         $('#vSapQrReplace').jqxInput({disabled: true });
         $('#vSapQrReplace').val("");
       }
-    }
-    else
+    }else if(tagReadArr[1] == "06"){
+      vItemNoRepl = tagReadArr[3].substring(1,tagReadArr[3].length);
+      vBatchRepl = tagReadArr[5].substring(1,tagReadArr[5].length);
+      vQty = tagReadArr[4].substring(1,tagReadArr[4].length);
+
+      if(vItemNoRepl == vItemNoCurr && vBatchRepl != vBatchCurr)
+      {
+        $("#vStatus").html(vItemNoRepl);
+        $('#vSapQrReplace').val(vBatchRepl);
+        //$('#tabletest tr').children('td, th').css('background-color','#08ca0e');
+        insReplSMT(vLine,vTable,vItemNoRepl,vQty,vBatchCurr,vBatchRepl,vUserID);
+      }
+      else
+      {
+        $("#vStatus").html("Can't Insert");
+        $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
+
+        $('#vSapQrCurrent').jqxInput({disabled: false });
+        $('#vSapQrCurrent').val("");
+        $('#vSapQrCurrent').focus();
+
+        $('#vSapQrReplace').jqxInput({disabled: true });
+        $('#vSapQrReplace').val("");
+      }
+    }else
     {
       $('#vStatus').html('QR Not Match');
       $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');

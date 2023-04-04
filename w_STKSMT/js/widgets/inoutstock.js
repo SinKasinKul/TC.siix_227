@@ -158,6 +158,62 @@ var ReadTag = function(Q){
 
   var tagRead = Q;
   var tagReadArr = tagRead.split('@');
+
+  var vTracking = $("#vTracking").val();
+  var vLocation = $("#vLocation").val();
+
+  var vChkQR = tagReadArr.length;
+
+  if(tagReadArr[1] == "SIIX20"){
+    vBatchNo = tagReadArr[2];
+    vItemNo = tagReadArr[3];
+
+    var vLenItem = tagReadArr[3].length;
+    if(vLenItem > 10)
+    {
+      vItemNo = tagReadArr[3].substring(8,vLenItem);
+    }
+    else
+    {
+      vItemNo = tagReadArr[3];
+    }
+
+    var vQty = tagReadArr[4];
+    $("#vSapQr").val(vBatchNo);
+    InsertInBound(vItemNo,vBatchNo,vQty,vLocation,vUserID,vTracking);
+  }else if(tagReadArr[1] == "06"){
+    vItemNo = tagReadArr[3].substring(1,tagReadArr[3].length);
+    vBatchNo = tagReadArr[5].substring(1,tagReadArr[5].length);
+    vQty = tagReadArr[4].substring(1,tagReadArr[4].length);
+
+    var vLenItem = tagReadArr[3].length;
+    if(vLenItem > 10)
+    {
+      vItemNo = tagReadArr[3].substring(8,vLenItem);
+    }
+    else
+    {
+      vItemNo = tagReadArr[3];
+    }
+
+    $("#vSapQr").val(vBatchNo);
+    InsertInBound(vItemNo,vBatchNo,vQty,vLocation,vUserID,vTracking);
+  }
+  else
+  {
+    $("#vSapQr").jqxInput({disabled: false });
+    $("#vSapQr").val("");
+    $("#vSapQr").focus();
+
+    $('#vStatus').html("QR Not Match!!!");
+    $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
+  }
+};
+
+var ReadTagOld = function(Q){
+
+  var tagRead = Q;
+  var tagReadArr = tagRead.split('@');
   var vBatchNo = tagReadArr[2];
 
   var vItemNo;

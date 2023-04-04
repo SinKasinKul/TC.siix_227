@@ -1,0 +1,78 @@
+<!--**********************************
+    Nav header start
+***********************************-->
+<div class="nav-header">
+    <div class="brand-logo">
+        <a href="index.php">
+            <b class="logo-abbr"><img src="images/SIIX.png" alt="" style="width:25px;height:25px;"></b>
+            <span class="logo-compact">Thai SIIX CO.,LTD.</span>
+            <span class="brand-title">
+                <img src="images/SIIX.png" alt="" style="width:50px;height:50px;">
+            </span>
+        </a>
+    </div>
+</div>
+<!--**********************************
+    Nav header end
+***********************************-->
+
+<!--**********************************
+    Header start
+***********************************-->
+<div class="header">
+    <div class="header-content clearfix">
+
+        <div class="nav-control">
+            <div class="hamburger">
+                <span class="toggle-icon"><i class="icon-menu"></i></span>
+            </div>
+        </div>
+        <div class="header-right">
+            <!--div> User :: <B><span id="UserName" ><?php echo $_SESSION['UserName'];?></span></B> || Date :: <span id='ct6' style="background-color:#FFFFFF"></span-->
+            <li class="icons dropdown">
+                <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                    <span class="activity active"></span>
+                    <img src="images/user/1.png" height="40" width="40" alt="">
+                </div>
+                <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                    <div class="dropdown-content-body">
+                        <ul>
+                            <li class="center">User :: <B><span id="UserName" ><?php echo $_SESSION['UserName'];?></span></B> </li>
+                            <li class="center"><span id= "vLogOut" ><i class="icon-key"></i> <span>Logout</span></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </div>
+    </div>
+</div>
+<!--**********************************
+    Header end ti-comment-alt
+***********************************-->
+<script>
+  function display_ct6()
+  {
+      var x = new Date()
+      var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
+      hours = x.getHours( ) % 12;
+      hours = hours ? hours : 12;
+      var x1=addZero(x.getDate()) + "-" + addZero(x.getMonth()) + "-" + x.getFullYear();
+      x1 = x1 + " - " +  addZero(hours) + ":" +  addZero(x.getMinutes()) + ":" +  addZero(x.getSeconds()) + ":" + ampm;
+      document.getElementById('ct6').innerHTML = x1;
+      display_c6();
+ }
+ function addZero(x) {
+
+   var vX = x.toString();
+   if(vX.length == 1){
+     vX = "0" + x;
+   }
+   return vX;
+ }
+ function display_c6()
+ {
+  var refresh=1000; // Refresh rate in milli seconds
+  mytime=setTimeout('display_ct6()',refresh)
+ }
+//display_c6();
+</script>

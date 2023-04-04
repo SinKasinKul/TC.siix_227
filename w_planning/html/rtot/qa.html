@@ -1,0 +1,110 @@
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+
+    <div class="container-fluid mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="header-right">
+                              <table>
+                                <tr>
+                                  <td>Total Employee :: &nbsp;</td>
+                                  <td><span id="vTotalEmp">0</span>(Emp.)&nbsp;</td>
+                                  <td>Complete :: &nbsp;</td>
+                                  <td><span id="vComplteRT">0</span>(Emp.)&nbsp;</td>
+                                  <td>Wait :: &nbsp;</td>
+                                  <td><span id="vWaitRT">0</span>(Emp.)&nbsp;</td>
+                                  <td>Date :: </td>
+                                  <td><input type="text" id="vRtotDate" name="" value=""/></td>
+                                  <td>&nbsp;&nbsp;&nbsp;<button id= "vbtReload" class="btn btn-primary" data-toggle="modal" data-target="#modalGrid">Reload</button></td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div id='chartRTOT' style="width:100%; height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="header-right">
+                                <button id= "vbtExportOTTeam" class="btn btn-success" data-toggle="modal" data-target="#modalGrid">Export</button>
+                            </div>
+                            <h4 class="card-title">RT+OT QA Team</h4>
+                            <div id="gridRTOTTeam"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="header-right">
+                                <button id= "vbtAddEmp" class="btn btn-info" data-toggle="modal" data-target="#modalGrid">Add Employee</button>
+                                <button id= "vbtExport" class="btn btn-success" data-toggle="modal" data-target="#modalGrid">Export</button>
+                            </div>
+                            <h4 class="card-title">RT+OT QA Employee</h4>
+                            <div id="gridRTOT"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<div id="windowEmployee">
+    <div id="windowHeader">
+        <span id="vEMPtype"></span><span> Employee</span>
+    </div>
+    <div style="overflow: hidden;">
+      <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+            <tr>
+                 <td align="right" width="35%" bgcolor="#CCCCCC" valign='center'><B>Department:</B></td>
+                 <td><input type="text" id='vEMP_DEPT' readonly/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Employee ID:</B></td>
+                 <td><input type="text" id='vEMP_EmployeeID'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Name:</B></td>
+                 <td><input type="text" id='vEMP_Name'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Last Name:</B></td>
+                 <td><input type="text" id='vEMP_LastName'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Position:</B></td>
+                 <td><input type="text" id='vEMP_Position'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Team:</B></td>
+                 <td><!--input type="text" id='vEMP_Team'/--><div id="vEMP_Team"></div></td>
+            </tr>
+            <tr>
+                 <td align="center" valign='center' colspan="2">
+                  <input id="vEMP_Save" type="button" value="Save" class="btn btn-success" data-toggle="modal" data-target="#modalGrid" readonly/>
+                  <input id="vEMP_Cancel" type="button" value="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" readonly/>
+                </td>
+            </tr>
+      </table>
+    </div>
+</div>
+<?php require_once('html/script.html');?>
+<script type="text/javascript" src="js/widgets/rtot/rtot_qa.js"></script>

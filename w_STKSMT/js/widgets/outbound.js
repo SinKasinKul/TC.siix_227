@@ -91,25 +91,30 @@ var ReadTag = function(Q){
 
   var tagRead = Q;
   var tagReadArr = tagRead.split('@');
-  var vBatchNo = tagReadArr[2];
 
-  var vItemNo;
-
-  var vLenItem = tagReadArr[3].length;
-  if(vLenItem > 10)
-  {
-    vItemNo = tagReadArr[3].substring(8,vLenItem);
-  }
-  else
-  {
-    vItemNo = tagReadArr[3];
-  }
-  var vQty = tagReadArr[4];
   var vLocation = $("#vLocation").val();
 
   var vChkQR = tagReadArr.length;
 
-  if(vChkQR == 7){
+  if(tagReadArr[1] == "SIIX20"){
+
+    var vBatchNo = tagReadArr[2];
+    var vItemNo;
+
+    var vLenItem = tagReadArr[3].length;
+    if(vLenItem > 10)
+    {
+      vItemNo = tagReadArr[3].substring(8,vLenItem);
+    }
+    else
+    {
+      vItemNo = tagReadArr[3];
+    }
+    var vQty = tagReadArr[4];
+
+    var vLocation = $("#vLocation").val();
+
+    var vChkQR = tagReadArr.length;
     //$("#vSapQr").val(vBatchNo);
     InsertOutBound(vItemNo,vBatchNo,vQty,vLocation,vUserID);
   }

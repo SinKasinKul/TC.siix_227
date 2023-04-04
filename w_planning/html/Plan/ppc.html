@@ -1,0 +1,152 @@
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+
+    <div class="container-fluid mt-3">
+      <?php require_once('html/Content.html');?>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id='chartPlansMonth' style="width:100%; height:300px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Planning Table Line :: <span id="vShowLine">ALL</span></h4>
+                            <div class="header-right">
+                              <table>
+                                <tr>
+                                  <td align="right"><B> Date :: </B></td>
+                                  <td><input type="text" id="vPlanDate" name="" value=""/></td>
+                                  <td>&nbsp;&nbsp;&nbsp;<button id= "vbtAddPlan" class="btn btn-success" data-toggle="modal" data-target="#modalGrid">Add+</button></td>
+                                  <td>&nbsp;&nbsp;&nbsp;<button id= "vbtReload" class="btn btn-primary" data-toggle="modal" data-target="#modalGrid">Reload</button></td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div id="gridPlan"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">History record. Tracking :: <span id="vsTracking"></span></h4>
+                            <div class="header-right">
+                                <button id= "btvAddPlanIssue" class="btn btn-success" data-toggle="modal" data-target="#modalGrid">Add+</button>
+                            </div>
+                            <div id="gridIssue"></div>
+                            <div id="vAddPlanIssue">
+                                <div id="PlanIssueWindowHeader"><span>Add Plan</span></div>
+                                <div style="overflow: hidden;">
+                                    <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+                                      <tr>
+                                           <td align="right" bgcolor="#CCCCCC" valign='center'><B>Tracking:</B></td>
+                                           <td><input type="text" id='pISUTracking' size="20" readonly/></td>
+                                      </tr>
+                                      <tr>
+                                           <td align="right" bgcolor="#CCCCCC" valign='center'><B>Remark:</B></td>
+                                           <td><input type="text" id='pRemark' size="20"/></td>
+                                      </tr>
+                                       <tr>
+                                          <td align="center" valign='center' colspan="2">
+                                            <button id="vAddPlanIssueClose" class="btn text-center btn-danger" size="10">Cancel</button>
+                                            <button id="vAddPlanIssueSave" class="btn text-center btn-success" size="10">Save</button>
+                                         </td>
+                                       </tr>
+                                    </table>
+                                    <input type="hidden" id='pPlanIssueID'/>
+                                </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<?php require_once('html/script.html');?>
+<script type="text/javascript" src="js/widgets/Content.js"></script>
+<script type="text/javascript" src="js/widgets/plan/main.js"></script>
+<!--**********************************
+    Form input
+***********************************-->
+<div id="vAddPlan">
+    <div id="PlanWindowHeader"><span>Add Plan</span></div>
+    <div style="overflow: hidden;">
+        <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+          <tr>
+               <td align="right" bgcolor="#CCCCCC" width="20%"><B>#Line</B></td>
+               <td><div id="pLine"></div></td>
+               <td align="right" bgcolor="#CCCCCC" valign='center'  width="20%"><B>Priority:</B></td>
+               <td><input type="text" id='pPriority' size="20"/></td>
+           </tr>
+          <tr>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Delivery date:</B></td>
+               <td><input type="text" id='pDeliDate' size="20" /></td>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Side:</B></td>
+               <td><div id='pSide'></div></td>
+          </tr>
+          <tr>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Project:</B></td>
+               <td><input type="text" id='pProject' size="20"/></td>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>PCB Code:</B></td>
+               <td><input type="text" id='pPCBCode' size="20"/></td>
+          </tr>
+          <tr>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Type:</B></td>
+               <td><input type="text" id='pType' size="20"/></td>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>FG Code:</B></td>
+               <td><input type="text" id='pFGCode' size="20"/></td>
+          </tr>
+          <tr>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Tracking:</B></td>
+               <td><input type="text" id='pTracking' size="20"/></td>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Model:</B></td>
+               <td><input type="text" id='pModel' size="20"/></td>
+          </tr>
+          <tr>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Lot:</B></td>
+               <td><input type="text" id='pLot' size="20"/></td>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Plan Qty:</B></td>
+               <td><input type="text" id='pPlanQty' size="20"/></td>
+          </tr>
+          <tr>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Plan Start:</B></td>
+               <td><input type="text" id='pPlanStartDate' size="20"/></td>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Plan End:</B></td>
+               <td><input type="text" id='pPlanEndDate' size="20"/></td>
+          </tr>
+          <tr>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Unit/Hrs:</B></td>
+               <td><input type="text" id='pUnitHrs' size="20"/></td>
+               <td align="right" bgcolor="#CCCCCC" valign='center'><B>Plan Kitting:</B></td>
+               <td><input type="text" id='pScheduleKit' size="20"/></td>
+          </tr>
+           <tr>
+              <td align="center" valign='center' colspan="4">
+                <button id="vAddPlanClose" class="btn text-center btn-danger" size="10">Cancel</button>
+                <button id="vAddPlanSave" class="btn text-center btn-success" size="10">Save</button>
+             </td>
+           </tr>
+        </table>
+        <input type="hidden" id='pPlanID'/>
+    </div>
+  </div>

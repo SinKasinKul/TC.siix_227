@@ -1,0 +1,147 @@
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+
+    <div class="container-fluid mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title center">EDER Record</h4>
+                          <table align="center" width="100%">
+                            <tr valign="TOP">
+                              <td align="center">
+                                <table>
+                                  <tr>
+                                    <td>
+                                      <div id="dpDeptSearch"></div>
+                                      <input type="hidden" id="psProcess" name="" value="" size="15">
+                                    </td>
+                                    <td>&nbsp;&nbsp;&nbsp;Date ::</td>
+                                    <td><input type="text" id="psDate" name="" value="" size="15"></td>
+                                    <td><input id="btSearch" type="button" value="Search" class="btn btn-success" data-toggle="modal" data-target="#modalGrid" size="10" readonly/></td>
+                                    <td><input id="btReload" type="button" value="Reload" class="btn btn-primary" data-toggle="modal" data-target="#modalGrid" size="10" readonly/></td>
+                                  </tr>
+                                </table>
+                                <div id="gridEDEREntry"></div>
+                              </td>
+                            </tr>
+                          </table>
+                          <input type="hidden" id='pEDER_ID'/>
+                          <input type="hidden" id='pPictureOKH'/>
+                          <input type="hidden" id='pPictureNGH'/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title center">EDER Entry</h4>
+                            <table id="TBEDER" class="table table-striped table-bordered table-hover">
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center' width="10%"><B>Type EDER:</B></td>
+                                   <td width="40%"><div id="pEderType"></div></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center' width="10%"></td>
+                                   <td></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center' width="10%"><B>What problem :</B></td>
+                                   <td width="40%"><input type="text" id="pWhatProblem" size="50"></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center' width="10%"><B>Where (Process):</B></td>
+                                   <td><div id="dpDept"></div><input type="hidden" id='pWhereProcess' size="50" /></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Why:</B></td>
+                                   <td><input type="text" id="pWhy" name="" value="" size="50"></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Production Line</B></td>
+                                   <td><input type="text" id="pLine"/></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>When (Date):</B></td>
+                                   <td><input type="text" id='pWhenDate' size="20" /></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Who Detection:</B></td>
+                                   <td><input type="text" id='pWhoDetection' size="20" /></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>When (Shift):</B></td>
+                                   <td><input type="text" id='pWhenShift' size="20" /></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>How Many:</B></td>
+                                   <td><input type="text" id='pHowMany' size="20" /></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Customer :</B></td>
+                                   <td><input type="text" id='pCustomer' size="20" /></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>How Occur:</B></td>
+                                   <td><input type="text" id='pHowOccur' size="50" /></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Tracking no. :</B></td>
+                                   <td><input type="text" id='pTracking' size="20" /></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Model :</B></td>
+                                   <td><input type="text" id='pModel' size="50" /></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Q'ty lot :</B></td>
+                                   <td><input type="text" id='pQty' size="20" /></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Part item :</B></td>
+                                   <td><input type="text" id='pPartItem' size="20" /></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Part name :</B></td>
+                                   <td><input type="text" id='pPartName' size="20" /></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Maker :</B></td>
+                                   <td><input type="text" id='pMaker' size="20" /></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Problem case :</B></td>
+                                   <td><textarea id="pProblemCase" name="pProblemCase"></textarea></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Temporary action :</B></td>
+                                   <td><textarea id="pTemporaryAction" name="pTemporaryAction"></textarea></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Permanent action :</B></td>
+                                   <td><textarea id="pPermanentAction" name="pPermanentAction"></textarea></td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B></B></td>
+                                   <td></td>
+                              </tr>
+                              <tr>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Picture OK :</B></td>
+                                   <td>
+                                     <input type="file" id='pPictureOK' size="20" /><span id="msgIMGOK"></span>
+                                     <img id="psImgOK" width="100%">
+                                     <input id="btDELimgOK" type="button" value="Delete" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" size="10" readonly/>
+                                   </td>
+                                   <td align="right" bgcolor="#CCCCCC" valign='center'><B>Picture NG :</B></td>
+                                   <td>
+                                     <input type="file" id='pPictureNG' size="20" /><span id="msgIMGNG"></span>
+                                     <img id="psImgNG" width="100%" >
+                                     <input id="btDELimgNG" type="button" value="Delete" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" size="10" readonly/>
+                                   </td>
+                              </tr>
+                              <tr>
+                                   <td align="center" valign='center' colspan="4">
+                                    <input id="rRecord" type="button" value="Save" class="btn btn-success" data-toggle="modal" data-target="#modalGrid" size="10" readonly/>
+                                    <input id="rRecordClose" type="button" value="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" size="10" readonly/>
+                                  </td>
+                              </tr>
+                            </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<?php require_once('html/script.html');?>
+<script type="text/javascript" src="js/widgets/eder/entry.js"></script>

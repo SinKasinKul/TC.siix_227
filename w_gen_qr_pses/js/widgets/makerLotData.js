@@ -1,6 +1,6 @@
 $(document).ready(function () {
   //inputText
-  $('#tabletest tr').children('td, th').css('background-color','#FFFFFF');
+  $('#tabvarest tr').children('td, th').css('background-color','#FFFFFF');
 
   $('#vBarcode').focus();
 
@@ -11,7 +11,7 @@ $(document).ready(function () {
       var Q = $("#vBarcode").val();
       $("#imgQR").attr("src",'');
       ReadTag(Q);
-      $('#tabletest tr').children('td, th').css('background-color','#0adeff');
+      $('#tabvarest tr').children('td, th').css('background-color','#0adeff');
     }
   });
   $("#imgQR").hide();
@@ -45,7 +45,7 @@ function makerLotData(Item,Bc,Q) {
                           if (STS == '1')
                           {
                             var QR = Q.substring(0, Q.length -1);
-                            $('#tabletest tr').children('td, th').css('background-color','#08ca0e');
+                            $('#tabvarest tr').children('td, th').css('background-color','#08ca0e');
                             $("#imgQR").show();
                             $("#imgQR").attr("src",'https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' + QR + ITEMDESC + '@' + MAKERLOT + '@@');
                             console.log(QR + ITEMDESC + '@' + MAKERLOT + '@@');
@@ -54,7 +54,7 @@ function makerLotData(Item,Bc,Q) {
                             $("#imgQR").attr("src",'img/xx.png');
                             $("#vItemNo").html('No Data');
                             $("#vBatchNo").html('No Data');
-                            $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
+                            $('#tabvarest tr').children('td, th').css('background-color','#ff0a0a');
                           }
                         }
                       }
@@ -65,8 +65,20 @@ function makerLotData(Item,Bc,Q) {
 
     var tagRead = Q;
     var tagReadArr = tagRead.split('@');
-    var vBatchNo = tagReadArr[2];
-    var vItemNo = tagReadArr[3];
+//console.log(tagReadArr[1]);
+    var vBatchNo = "";
+    var vItemNo = "";
+
+    if(tagReadArr[1] == "SIIX20"){
+      vBatchNo = tagReadArr[2];
+      vItemNo = tagReadArr[3];
+    }else if(tagReadArr[1] == "06"){
+      vBatchNo = tagReadArr[5].substring(1,tagReadArr[5].length);
+      vItemNo = tagReadArr[3].substring(1,tagReadArr[3].length);
+
+      console.log(vBatchNo);
+      console.log(vItemNo);
+    }
 
     makerLotData(vItemNo,vBatchNo,Q);
 

@@ -78,11 +78,17 @@ $(document).ready(function () {
   });
 
   var Status = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
-          if(value !== "NG" || value !== "No Data")
+          if(value === "NG")
+          {
+                return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;"><B>' + value + '</B></span>';
+          }
+          else if (value === "No Data")
+          {
+                return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;"><B>' + value + '</B></span>';
+          }
+          else 
           {
                 return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000;"><B>' + value + '</B></span>';
-          }else {
-                return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;"><B>' + value + '</B></span>';
           }
         }
 

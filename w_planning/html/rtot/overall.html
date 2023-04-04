@@ -1,0 +1,64 @@
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+
+    <div class="container-fluid mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="header-right">
+                              <table>
+                                <tr>
+                                  <td>Date :: </td>
+                                  <td><input type="text" id="vRtotDate" name="" value=""/></td>
+                                  <td>&nbsp;&nbsp;&nbsp;<button id= "vbtReload" class="btn btn-primary" data-toggle="modal" data-target="#modalGrid">Reload</button></td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div id='chartRTOT' style="width:100%; height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="header-right">
+                                <button id= "vbtExportOTTeam" class="btn btn-success" data-toggle="modal" data-target="#modalGrid">Export</button>
+                            </div>
+                            <h4 class="card-title">RT+OT Department</h4>
+                            <div id="gridRTOTTeam"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="header-right">
+                                <button id= "vbtExportOTTimeTeam" class="btn btn-success" data-toggle="modal" data-target="#modalGrid">Export</button>
+                            </div>
+                            <h4 class="card-title">RT+OT Working Time(Hour.)</h4>
+                            <div id="gridRTOTTimeTeam"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<?php require_once('html/script.html');?>
+<script type="text/javascript" src="js/widgets/rtot/rtot_overall.js"></script>

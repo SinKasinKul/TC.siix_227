@@ -1,0 +1,165 @@
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+
+    <div class="container-fluid mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body center">
+                          <!--h4 class="card-title center">EDER Board Quality</h4-->
+                          <h4>EDER Board SMT</h4>
+                          <div class="row">
+                              <input type="text" id='pTracking' size="20" />&nbsp;
+                              <input type="text" id='pModel' size="20" />&nbsp;
+                              Start Date :&nbsp;<input type="text" id='pStartDate' size="20" />&nbsp;
+                              End Date :&nbsp;<input type="text" id='pEndDate' size="20" />&nbsp;&nbsp;&nbsp;
+                              <input id="btSearch" type="button" value="Search" readonly/>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                          <!--h4 class="card-title center">EDER Board Quality</h4-->
+                          <div class="center">
+                              <figcaption><h4>Quality</h4></figcaption>
+                              <img width="180" height="80" src="images\eder\EDER_Left.PNG">
+                          </div>
+                          <div id="gridEDERQuality"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                          <!--h4 class="card-title center">EDER Board Quality</h4-->
+                          <div class="center">
+                              <figcaption><h4>Manager Challenge</h4></figcaption>
+                              <h4>EDER No. :: <span id="vMCQID"></span></h4>
+                              <h5>Problem :: <span id="vMCQPROBLEM"></span></h5>
+                              <input id="btMCQ" type="button" value="Add+" readonly/>
+                          </div>
+                          <div id="gridMCQuality"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                          <!--h4 class="card-title center">EDER Board Cost</h4-->
+                          <div class="center">
+                              <figcaption><h4>Cost</h4></figcaption>
+                              <img width="180" height="80" src="images\eder\EDER_Left.PNG">
+                          </div>
+                          <div id="gridEDERCost"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                          <!--h4 class="card-title center">EDER Board Quality</h4-->
+                          <div class="center">
+                              <figcaption><h4>Manager Challenge</h4></figcaption>
+                              <h4>EDER No. :: <span id="vMCCID"></span></h4>
+                              <h5>Problem :: <span id="vMCCPROBLEM"></span></h5>
+                              <input id="btMCC" type="button" value="Add+" readonly/>
+                          </div>
+                          <div id="gridMCCost"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                          <!--h4 class="card-title center">EDER Board Delivery</h4-->
+                          <div class="center">
+                              <figcaption><h4>Delivery</h4></figcaption>
+                              <img width="180" height="80" src="images\eder\EDER_Rigth.PNG">
+                          </div>
+                          <div id="gridEDERDelivery"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                          <!--h4 class="card-title center">EDER Board Quality</h4-->
+                          <div class="center">
+                              <figcaption><h4>Manager Challenge</h4></figcaption>
+                              <h4>EDER No. :: <span id="vMCDID"></span></h4>
+                              <h5>Problem :: <span id="vMCDPROBLEM"></span></h5>
+                              <input id="btMCD" type="button" value="Add+" readonly/>
+                          </div>
+                          <div id="gridMCDelivery"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                          <!--h4 class="card-title center">EDER Board Motivation</h4-->
+                          <div class="center">
+                              <figcaption><h4>Motivation</h4></figcaption>
+                              <img width="180" height="80" src="images\eder\EDER_Rigth.PNG">
+                          </div>
+                          <div id="gridEDERMotivation"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                          <!--h4 class="card-title center">EDER Board Quality</h4-->
+                          <div class="center">
+                              <figcaption><h4>Manager Challenge</h4></figcaption>
+                              <h4>EDER No. :: <span id="vMCMID"></span></h4>
+                              <h5>Problem :: <span id="vMCMPROBLEM"></span></h5>
+                              <input id="btMCM" type="button" value="Add+" readonly/>
+                          </div>
+                          <div id="gridMCMotivation"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<div id="windowMGRCHAL">
+    <div id="windowHeader">
+        <span id="vWDMGRCHAL"></span><span> Manager Challenge</span>
+    </div>
+    <div style="overflow: hidden;">
+      <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+            <tr>
+                 <td align="right" width="35%" bgcolor="#CCCCCC" valign='center'><B>Challenge:</B></td>
+                 <td><input type="text" id='vMGRCHAL_Challenge'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Action:</B></td>
+                 <td><input type="text" id='vMGRCHAL_Action'/></td>
+            </tr>
+            <tr>
+                 <td align="center" valign='center' colspan="2">
+                  <input type="hidden" id='vMGRCHAL_ID'/>
+                  <input type="hidden" id='vMGRCHAL_TYPE'/>
+                  <input id="vMGRCHAL_Save" type="button" value="Save" class="btn btn-success" data-toggle="modal" data-target="#modalGrid" readonly/>
+                  <input id="vMGRCHAL_Cancel" type="button" value="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" readonly/>
+                </td>
+            </tr>
+      </table>
+
+    </div>
+</div>
+
+<?php require_once('html/script.html');?>
+<script type="text/javascript" src="js/widgets/eder/boardSMT.js"></script>

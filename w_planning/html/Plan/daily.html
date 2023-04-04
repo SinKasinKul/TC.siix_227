@@ -1,0 +1,42 @@
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+
+    <div class="container-fluid mt-3">
+      <?php require_once('html/Content.html');?>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Daily Planning Table</h4>
+                            <div class="header-right">
+                              <table>
+                                <tr>
+                                  <td align="right"><B>#Line :: </B></td>
+                                  <td><div id="pLine"></div></td>
+                                  <td align="right"><B> Date :: </B></td>
+                                  <td><input type="text" id="vPlanDate" name="" value=""/></td>
+                                  <td>&nbsp;&nbsp;&nbsp;<button id= "vbtReload" class="btn btn-primary" data-toggle="modal" data-target="#modalGrid">Reload</button></td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div id="gridPlan"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<?php require_once('html/script.html');?>
+<script type="text/javascript" src="js/widgets/Content.js"></script>
+<script type="text/javascript" src="js/widgets/plan/daily.js"></script>
+<!--**********************************
+    Form input
+***********************************-->

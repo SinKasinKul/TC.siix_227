@@ -1,0 +1,272 @@
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+
+    <div class="container-fluid mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-body">
+                          <div class="header-right">
+                            <div class="row">
+                              <input type="text" id='sTM_MODEL'/>
+                              <div id='sTM_STATUS'></div>
+                              <button id= "vbtSearchTrialModel" class="btn btn-info" data-toggle="modal" data-target="#modalGrid">Search</button>
+                              <button id= "vbtAddTrialModel" class="btn btn-success" data-toggle="modal" data-target="#modalGrid">Add+</button>
+                            </div>
+                          </div>
+                          <h3 class="card-title">Trial Model by Tracking.</h3>
+                          <div id="gridTrialModel"></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-4">
+                  <div class="card">
+                      <div class="card-body">
+                        <div class="header-right">
+                            <button id= "vbtAddProcessFlow" class="btn btn-success" data-toggle="modal" data-target="#modalGrid">Add+</button>
+                        </div>
+                        <h3 class="card-title">Process Flow. . Tracking :: <span id="vTSProcessFlow">-</span></h3>
+                        <div id="gridProcessFlow"></div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-12">
+                  <div class="card">
+                      <div class="card-body">
+                        <div class="header-right">
+                            <button id= "vbtAddTroubleShooting" class="btn btn-success" data-toggle="modal" data-target="#modalGrid">Add+</button>
+                        </div>
+                        <h3 class="card-title">Trouble Shooting. Tracking :: <span id="vTSTracking">-</span> </h3>
+                        <div id="gridTroubleShooting"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<div id="TrialModel">
+    <div id="windowHeader">
+        <span id="vTMtype"></span><span> Trial Model</span>
+    </div>
+    <div style="overflow: hidden;">
+      <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+            <tr>
+                 <td align="right" width="35%" bgcolor="#CCCCCC" valign='center'><B>Customer:</B></td>
+                 <td><input type="text" id='vTM_CUS'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Item code:</B></td>
+                 <td><input type="text" id='vTM_TIEMCD'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Model name:</B></td>
+                 <td><input type="text" id='vTM_MODELNAME'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Model No.:</B></td>
+                 <td><input type="text" id='vTM_MODELNO'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Tracking:</B></td>
+                 <td><input type="text" id='vTM_TRACKING'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Link document:</B></td>
+                 <td><input type="text" id='vTM_LINK_DOCU'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Status:</B></td>
+                 <td><div id='vTM_STATUS'></div></td>
+            </tr>
+            <tr>
+                 <td align="center" valign='center' colspan="2">
+                  <input id="vTM_Save" type="button" value="Save" class="btn btn-success" data-toggle="modal" data-target="#modalGrid" readonly/>
+                  <input id="vTM_Cancel" type="button" value="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" readonly/>
+                </td>
+            </tr>
+      </table>
+      <input type="text" id='vTM_ID'/>
+    </div>
+</div>
+
+<div id="windowProcessFlows">
+    <div id="windowHeader">
+        <span id="vWDProcessFlows"></span><span> Process Flows</span>
+    </div>
+    <div style="overflow: hidden;">
+      <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+            <tr>
+                 <td align="right" width="35%" bgcolor="#CCCCCC" valign='center'><B>Type:</B></td>
+                 <td><div id='vPF_Type'></div></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Process:</B></td>
+                 <td><div id='vPF_PROCESS'></div></td>
+            </tr>
+            <tr>
+                 <td align="center" valign='center' colspan="2">
+                  <input id="vPF_Save" type="button" value="Save" class="btn btn-success" data-toggle="modal" data-target="#modalGrid" readonly/>
+                  <input id="vPF_Cancel" type="button" value="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" readonly/>
+                </td>
+            </tr>
+      </table>
+      <input type="text" id='vPF_ID'/>
+    </div>
+</div>
+
+<div id="windowTroubleShooting">
+    <div id="windowHeader">
+        <span id="vWDTroubleShooting"></span><span> Trouble Shooting</span>
+    </div>
+    <div style="overflow: hidden;">
+      <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+            <tr>
+                 <td align="right" width="10%" bgcolor="#CCCCCC" valign='center'><B>Enent:</B></td>
+                 <td><input type="text" id='vTS_EVENT'/></td>
+                 <td align="right" width="10%" bgcolor="#CCCCCC" valign='center'><B>Process:</B></td>
+                 <td><div id='vTS_PROCESS'></div></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Trouble:</B></td>
+                 <td><input type="text" id='vTS_TROUBLE'/></td>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Cause:</B></td>
+                 <td><input type="text" id='vTS_CAUSE'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Action:</B></td>
+                 <td><input type="text" id='vTS_ACTION'/></td>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>NG(%):</B></td>
+                 <td><input type="text" id='vTS_NG_PERCENT'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'></td>
+                 <td></td>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Proposal:</B></td>
+                 <td><input type="text" id='vTS_PRPPOSAL_TXT'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Current Condition:</B></td>
+                 <td>
+                   <input type="file" id='vTS_CURRENT_CONDITION'/>
+                   <span id="msgCURRENT_CONDITION"></span>
+                   <img id="vTS_ImgCURRENT_CONDITION" width="35%" >
+                   <input id="btDELimgCONDITION" type="button" value="Delete" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" size="10" readonly/>
+                   <input type="hidden" id='vTS_CURRENT_CONDITION_pic'/>
+                 </td>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Proposal image:</B></td>
+                 <td>
+                   <input type="file" id='vTS_PRPPOSAL_IMG'/>
+                   <span id="msgPRPPOSAL_IMG_pic"></span>
+                   <img id="vTS_ImgPRPPOSAL_IMG" width="35%" >
+                   <input id="btDELimgPRPPOSAL" type="button" value="Delete" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" size="10" readonly/>
+                   <input type="hidden" id='vTS_PRPPOSAL_IMG_pic'/>
+                 </td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Target:</B></td>
+                 <td><input type="text" id='vTS_TARGET'/></td>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Actual:</B></td>
+                 <td><input type="text" id='vTS_ACTUAL'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Result:</B></td>
+                 <td><input type="text" id='vTS_RESULT'/></td>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Status:</B></td>
+                 <td><div id='vTS_STATUS'></div></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>PIC:</B></td>
+                 <td><input type="text" id='vTS_PIC_RESPONSE'/></td>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Judgement:</B></td>
+                 <td><input type="text" id='vTS_JUDGMENT'/></td>
+            </tr>
+            <tr>
+                 <td align="center" valign='center' colspan="4">
+                  <input id="vTS_Save" type="button" value="Save" class="btn btn-success" data-toggle="modal" data-target="#modalGrid" readonly/>
+                  <input id="vTS_Cancel" type="button" value="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" readonly/>
+                </td>
+            </tr>
+      </table>
+      <input type="text" id='vTS_ID'/>
+    </div>
+</div>
+
+<div id="windowOpenPoint">
+    <div id="windowHeader">
+        <span id="vWDOpenPoint"></span><span> Open Point</span>
+    </div>
+    <div style="overflow: hidden;">
+      <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+            <tr>
+                 <td width="15%" align="right" bgcolor="#CCCCCC" valign='center'><B>Trouble:</B></td>
+                 <td><input type="text" id='vOP_TROUBLE'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Cause:</B></td>
+                 <td><input type="text" id='vOP_CAUSE'/></td>
+            </tr>
+            <tr>
+                 <td align="right" bgcolor="#CCCCCC" valign='center'><B>Action:</B></td>
+                 <td><input type="text" id='vOP_ACTION'/></td>
+            </tr>
+            <tr>
+                 <td align="center" valign='center' colspan="2">
+                  <input id="vOP_Cancel" type="button" value="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" readonly/>
+                </td>
+            </tr>
+      </table>
+    </div>
+</div>
+
+<div id="windowCONDITION">
+    <div id="windowHeader">
+        <span id="vWDCONDITION"></span><span> Current Condition</span>
+    </div>
+    <div style="overflow: hidden;">
+      <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+            <tr>
+                 <td> <img id="vCC_ImgCURRENT_CONDITION" width="100%" height="400" ></td>
+            </tr>
+            <tr>
+                 <td align="center" valign='center' colspan="2">
+                  <input id="vCC_Cancel" type="button" value="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" readonly/>
+                </td>
+            </tr>
+      </table>
+    </div>
+</div>
+
+<div id="windowPRPPOSAL">
+    <div id="windowHeader">
+        <span id="vWDPRPPOSAL"></span><span> Current Condition</span>
+    </div>
+    <div style="overflow: hidden;">
+      <table width="100%" height="100%" class="table table-striped table-bordered table-hover">
+            <tr>
+                 <td width="15%" align="right" bgcolor="#CCCCCC" valign='center'><B>Proposal:</B></td>
+                 <td><input type="text" id='vPP_PRPPOSAL'/></td>
+            </tr>
+            <tr>
+                 <td colspan="2"> <img id="vPP_ImgPRPPOSAL" width="100%" height="400" ></td>
+            </tr>
+            <tr>
+                 <td align="center" valign='center' colspan="2">
+                  <input id="vPP_Cancel" type="button" value="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#modalGrid" readonly/>
+                </td>
+            </tr>
+      </table>
+    </div>
+</div>
+
+<?php require_once('html/script.html');?>
+<script type="text/javascript" src="js/widgets/npi/trialModel.js"></script>
