@@ -86,27 +86,21 @@ var ReadTag = function(Q){
 
   var tagRead = Q;
   var tagReadArr = tagRead.split('@');
-  var vBatchNo = tagReadArr[2];
   var UserID = $('#vEmp').val();
-  var vItemNo;
+
+  var parsedData = {};
+  parsedData = GetDetailQRcode(Q);
+  //console.log(parsedData);
+  var vItemNo = parsedData["Itemcode"];
+  var vBatchNo = parsedData["PackageID"];
+  var vQty = parsedData["Qty"];
+
 
   try{
-      var vLenItem = tagReadArr[3].length;
-      if(vLenItem > 10)
-      {
-        vItemNo = tagReadArr[3].substring(8,vLenItem);
-      }
-      else
-      {
-        vItemNo = tagReadArr[3];
-      }
-      var vQty = tagReadArr[4];
       var vLocation = $("#vLocation").val();
 
-      var vChkQR = tagReadArr.length;
-
-      if(vChkQR == 7){
-        //$("#vSapQr").val(vBatchNo);
+      if(tagReadArr[1] == "SIIX20" || tagReadArr[1] == "06")
+      {
         STBL_STK_UPD_RETURN(vItemNo,vBatchNo,vQty,vLocation,UserID);
       }
       else{
@@ -123,6 +117,37 @@ var ReadTag = function(Q){
     }
 
 };
+
+function GetDetailQRcode(Q){
+  var tagReadArr = Q.split('@');
+  //console.log(tagReadArr);
+  var parsedData = {};
+
+  if(tagReadArr[1] == "06"){
+    for(var i = 0;i < tagReadArr.length; i++){
+      var element = tagReadArr[i];
+      if (element.startsWith("V")) {
+        parsedData["Vender"] = element.substring(1);
+      }else if (element.startsWith("P")) {
+        parsedData["Itemcode"] = element.substring(1);
+      }else if (element.startsWith("Q")) {
+        parsedData["Qty"] = element.substring(1);
+      }else if (element.startsWith("S")) {
+        parsedData["PackageID"] = element.substring(1);
+      }else if (element.startsWith("1T")) {
+        parsedData["MakerLot"] = element.substring(2);
+      }else if (element.startsWith("1P")) {
+        parsedData["ItemDESC"] = element.substring(2);
+      }
+    }
+  }else if(tagReadArr[1] == "SIIX20"){
+    parsedData["Itemcode"] = tagReadArr[3];
+    parsedData["PackageID"] = tagReadArr[2];
+    parsedData["Qty"] = tagReadArr[4];
+  }
+  
+  return parsedData;
+}
 
 function CheckBatchOnHand (Batch) {
    var act = 'CheckBatchOnHand';

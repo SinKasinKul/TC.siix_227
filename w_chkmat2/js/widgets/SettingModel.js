@@ -255,33 +255,20 @@ function ReadTagCurrent(Q){
   //console.log(Q);
   var tagRead = Q;
   var tagReadArr = tagRead.split('@');
-  var vBatchNo = tagReadArr[2];
-  var vItemNo = tagReadArr[3];
+  var parsedData = GetDetailQRcode(Q);
+  //console.log(parsedData);
+  var vItemNoCurr = parsedData["Itemcode"];
+  var vBatchCurr = parsedData["PackageID"];
+  var vQty = parsedData["Qty"];
 
-  var vLentagReadArr = tagReadArr.length;
-  //console.log(tagReadArr[1]);
-  if(tagReadArr[1] == "SIIX20")
+  if(tagReadArr[1] == "SIIX20" || tagReadArr[1] == "06")
   {
-    vItemNoCurr = tagReadArr[3];
-    vBatchCurr = tagReadArr[2];
-    vQty = tagReadArr[4];
 
     $('#vSapQrCurrent').val(vBatchCurr);
     $("#vStatus").html(vItemNoCurr);
     $('#tableMain tr').children('td, th').css('background-color','#08ca0e');
 
     insReplSMT(vLine,vTable,vItemNoCurr,vQty,vBatchCurr,"",vUserID);
-    //countReplSMT(vLine,vTable,vItemNoCurr);
-  }else if(tagReadArr[1] == "06"){
-    vItemNoCurr = tagReadArr[3].substring(1,tagReadArr[3].length);
-    vBatchCurr = tagReadArr[5].substring(1,tagReadArr[5].length);
-    vQty = tagReadArr[4].substring(1,tagReadArr[4].length);;
-
-    insReplSMT(vLine,vTable,vItemNoCurr,vQty,vBatchCurr,"",vUserID);
-
-    $('#vSapQrCurrent').val(vBatchCurr);
-    $("#vStatus").html(vItemNoCurr);
-    $('#tableMain tr').children('td, th').css('background-color','#08ca0e');
   }
   else
   {
@@ -291,7 +278,37 @@ function ReadTagCurrent(Q){
     $('#vSapQrCurrent').val("");
     $('#vSapQrCurrent').focus();
   }
+}
 
+function GetDetailQRcode(Q){
+  var tagReadArr = Q.split('@');
+  //console.log(tagReadArr);
+  var parsedData = {};
+
+  if(tagReadArr[1] == "06"){
+    for(var i = 0;i < tagReadArr.length; i++){
+      var element = tagReadArr[i];
+      if (element.startsWith("V")) {
+        parsedData["Vender"] = element.substring(1);
+      }else if (element.startsWith("P")) {
+        parsedData["Itemcode"] = element.substring(1);
+      }else if (element.startsWith("Q")) {
+        parsedData["Qty"] = element.substring(1);
+      }else if (element.startsWith("S")) {
+        parsedData["PackageID"] = element.substring(1);
+      }else if (element.startsWith("1T")) {
+        parsedData["MakerLot"] = element.substring(2);
+      }else if (element.startsWith("1P")) {
+        parsedData["ItemDESC"] = element.substring(2);
+      }
+    }
+  }else if(tagReadArr[1] == "SIIX20"){
+    parsedData["Itemcode"] = tagReadArr[3];
+    parsedData["PackageID"] = tagReadArr[2];
+    parsedData["Qty"] = tagReadArr[4];
+  }
+  
+  return parsedData;
 }
 
 function countReplSMT(Line,Tables,Item) {
@@ -324,75 +341,75 @@ function countReplSMT(Line,Tables,Item) {
 }
 
 function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
-            var act = 'insReplSMT';
-            var url = "main.class.php";
-            $.ajax({
-                      type: "GET",
-                      url: url,
-                      dataType: "json",
-                      data: "action=" + act
-                      + "&Line=" + Line
-                      + "&Tables=" + Tables
-                      + "&ItemCD=" + Item
-                      + "&Qty=" + Qty
-                      + "&BatchCurr=" + BatchCurr
-                      + "&BatchRepl=" + BatchRepl
-                      + "&Emp=" + Emp,
-                      success: function(data) {
-                        if (data.response == 'success') {
-                          var Data = data.data[0];
+    var act = 'insReplSMT';
+    var url = "main.class.php";
+    $.ajax({
+              type: "GET",
+              url: url,
+              dataType: "json",
+              data: "action=" + act
+              + "&Line=" + Line
+              + "&Tables=" + Tables
+              + "&ItemCD=" + Item
+              + "&Qty=" + Qty
+              + "&BatchCurr=" + BatchCurr
+              + "&BatchRepl=" + BatchRepl
+              + "&Emp=" + Emp,
+              success: function(data) {
+                if (data.response == 'success') {
+                  var Data = data.data[0];
 
 
-                          if(!Data)
-                          {
-                            $('#vStatus').html('SQL Error');
-                            $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
+                  if(!Data)
+                  {
+                    $('#vStatus').html('SQL Error');
+                    $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
 
-                            $('#vSapQrCurrent').jqxInput({disabled: false });
-                            $('#vSapQrCurrent').focus();
-                            //$("#vSapQrCurrent").jqxInput({disabled: true });
-                            $('#vSapQrCurrent').focus();
+                    $('#vSapQrCurrent').jqxInput({disabled: false });
+                    $('#vSapQrCurrent').focus();
+                    //$("#vSapQrCurrent").jqxInput({disabled: true });
+                    $('#vSapQrCurrent').focus();
 
-                            //$("#vMachine").jqxInput({disabled: false });
-                            //$("#vMachine").val("");
-                          //  $("#vMachine").focus();
-                          }
-                          else
-                          {
-                            var Result = Data.Result;
-                            var RSts = Data.RSts;
+                    //$("#vMachine").jqxInput({disabled: false });
+                    //$("#vMachine").val("");
+                  //  $("#vMachine").focus();
+                  }
+                  else
+                  {
+                    var Result = Data.Result;
+                    var RSts = Data.RSts;
 
-                            if (RSts == '1')
-                            {
-                              $('#vStatus').html(Result);
-                              $('#tabletest tr').children('td, th').css('background-color','#08ca0e');
+                    if (RSts == '1')
+                    {
+                      $('#vStatus').html(Result);
+                      $('#tabletest tr').children('td, th').css('background-color','#08ca0e');
 
-                              $('#vSapQrCurrent').jqxInput({disabled: false });
-                              $('#vSapQrCurrent').focus();
-                              $('#vSapQrCurrent').val("");
-                              //$("#vSapQrCurrent").jqxInput({disabled: true });
-                              $('#vSapQrCurrent').focus();
+                      $('#vSapQrCurrent').jqxInput({disabled: false });
+                      $('#vSapQrCurrent').focus();
+                      $('#vSapQrCurrent').val("");
+                      //$("#vSapQrCurrent").jqxInput({disabled: true });
+                      $('#vSapQrCurrent').focus();
 
-                              //$("#vMachine").jqxInput({disabled: false });
-                              //$("#vMachine").val("");
-                            //  $("#vMachine").focus();
-                              countReplSMT(Line,Tables,Item);
-                            }else {
+                      //$("#vMachine").jqxInput({disabled: false });
+                      //$("#vMachine").val("");
+                    //  $("#vMachine").focus();
+                      countReplSMT(Line,Tables,Item);
+                    }else {
 
-                              $('#vStatus').html(Result);
-                              $('#tableMain tr').children('td, th').css('background-color','#ff0a0a');
+                      $('#vStatus').html(Result);
+                      $('#tableMain tr').children('td, th').css('background-color','#ff0a0a');
 
-                              //$('#vSapQrReplace').jqxInput({disabled: true });
-                              //$('#vSapQrReplace').val("");
-                              $("#vSapQrCurrent").jqxInput({disabled: true });
-                              $('#vSapQrCurrent').val("");
+                      //$('#vSapQrReplace').jqxInput({disabled: true });
+                      //$('#vSapQrReplace').val("");
+                      $("#vSapQrCurrent").jqxInput({disabled: true });
+                      $('#vSapQrCurrent').val("");
 
-                              $("#vMachine").jqxInput({disabled: false });
-                              $("#vMachine").val("");
-                              $("#vMachine").focus();
-                            }
-                          }
-                        }
-                      }
+                      $("#vMachine").jqxInput({disabled: false });
+                      $("#vMachine").val("");
+                      $("#vMachine").focus();
+                    }
+                  }
+                }
+              }
             });
   }

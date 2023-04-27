@@ -85,3 +85,34 @@ function materialData(Batch) {
     }
 
   }
+
+  function GetDetailQRcode(Q){
+    var tagReadArr = Q.split('@');
+    //console.log(tagReadArr);
+    var parsedData = {};
+
+    if(tagReadArr[1] == "06"){
+      for(var i = 0;i < tagReadArr.length; i++){
+        var element = tagReadArr[i];
+        if (element.startsWith("V")) {
+          parsedData["Vender"] = element.substring(1);
+        }else if (element.startsWith("P")) {
+          parsedData["Itemcode"] = element.substring(1);
+        }else if (element.startsWith("Q")) {
+          parsedData["Qty"] = element.substring(1);
+        }else if (element.startsWith("S")) {
+          parsedData["PackageID"] = element.substring(1);
+        }else if (element.startsWith("1T")) {
+          parsedData["MakerLot"] = element.substring(2);
+        }else if (element.startsWith("1P")) {
+          parsedData["ItemDESC"] = element.substring(2);
+        }
+      }
+    }else if(tagReadArr[1] == "SIIX20"){
+      parsedData["Itemcode"] = tagReadArr[3];
+      parsedData["PackageID"] = tagReadArr[2];
+      parsedData["Qty"] = tagReadArr[4];
+    }
+    
+    return parsedData;
+  }

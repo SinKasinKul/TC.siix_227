@@ -162,40 +162,15 @@ var ReadTag = function(Q){
   var vTracking = $("#vTracking").val();
   var vLocation = $("#vLocation").val();
 
-  var vChkQR = tagReadArr.length;
+  var parsedData = {};
+  parsedData = GetDetailQRcode(Q);
+  //console.log(parsedData);
+  var vItemNo = parsedData["Itemcode"];
+  var vBatchNo = parsedData["PackageID"];
+  var vQty = parsedData["Qty"];
 
-  if(tagReadArr[1] == "SIIX20"){
-    vBatchNo = tagReadArr[2];
-    vItemNo = tagReadArr[3];
-
-    var vLenItem = tagReadArr[3].length;
-    if(vLenItem > 10)
-    {
-      vItemNo = tagReadArr[3].substring(8,vLenItem);
-    }
-    else
-    {
-      vItemNo = tagReadArr[3];
-    }
-
-    var vQty = tagReadArr[4];
-    $("#vSapQr").val(vBatchNo);
-    InsertInBound(vItemNo,vBatchNo,vQty,vLocation,vUserID,vTracking);
-  }else if(tagReadArr[1] == "06"){
-    vItemNo = tagReadArr[3].substring(1,tagReadArr[3].length);
-    vBatchNo = tagReadArr[5].substring(1,tagReadArr[5].length);
-    vQty = tagReadArr[4].substring(1,tagReadArr[4].length);
-
-    var vLenItem = tagReadArr[3].length;
-    if(vLenItem > 10)
-    {
-      vItemNo = tagReadArr[3].substring(8,vLenItem);
-    }
-    else
-    {
-      vItemNo = tagReadArr[3];
-    }
-
+  if(tagReadArr[1] == "SIIX20" || tagReadArr[1] == "06")
+  {
     $("#vSapQr").val(vBatchNo);
     InsertInBound(vItemNo,vBatchNo,vQty,vLocation,vUserID,vTracking);
   }
@@ -209,6 +184,37 @@ var ReadTag = function(Q){
     $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
   }
 };
+
+function GetDetailQRcode(Q){
+  var tagReadArr = Q.split('@');
+  //console.log(tagReadArr);
+  var parsedData = {};
+
+  if(tagReadArr[1] == "06"){
+    for(var i = 0;i < tagReadArr.length; i++){
+      var element = tagReadArr[i];
+      if (element.startsWith("V")) {
+        parsedData["Vender"] = element.substring(1);
+      }else if (element.startsWith("P")) {
+        parsedData["Itemcode"] = element.substring(1);
+      }else if (element.startsWith("Q")) {
+        parsedData["Qty"] = element.substring(1);
+      }else if (element.startsWith("S")) {
+        parsedData["PackageID"] = element.substring(1);
+      }else if (element.startsWith("1T")) {
+        parsedData["MakerLot"] = element.substring(2);
+      }else if (element.startsWith("1P")) {
+        parsedData["ItemDESC"] = element.substring(2);
+      }
+    }
+  }else if(tagReadArr[1] == "SIIX20"){
+    parsedData["Itemcode"] = tagReadArr[3];
+    parsedData["PackageID"] = tagReadArr[2];
+    parsedData["Qty"] = tagReadArr[4];
+  }
+  
+  return parsedData;
+}
 
 var ReadTagOld = function(Q){
 

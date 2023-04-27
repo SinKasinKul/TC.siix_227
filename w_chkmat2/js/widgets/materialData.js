@@ -216,15 +216,14 @@ function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
     //console.log(Q);
     var tagRead = Q;
     var tagReadArr = tagRead.split('@');
-    var vBatchNo = tagReadArr[2];
-    var vItemNo = tagReadArr[3];
+    var parsedData = {};
+    parsedData = GetDetailQRcode(Q);
+    //console.log(parsedData);
+    vItemNoCurr = parsedData["Itemcode"];
+    vBatchCurr = parsedData["PackageID"];
 
-    var vLentagReadArr = tagReadArr.length;
-    if(tagReadArr[1] == "SIIX20")
+    if(tagReadArr[1] == "SIIX20" || tagReadArr[1] == "06")
     {
-      vItemNoCurr = tagReadArr[3];
-      vBatchCurr = tagReadArr[2];
-
       $('#vSapQrCurrent').val(vBatchCurr);
       $("#vStatus").html(vItemNoCurr);
       $('#tabletest tr').children('td, th').css('background-color','#0adeff');
@@ -232,15 +231,6 @@ function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
       $('#vSapQrReplace').focus();
 
       countReplSMT(vLine,vTable,vItemNoCurr);
-    }else if(tagReadArr[1] == "06"){
-      vItemNoCurr = tagReadArr[3].substring(1,tagReadArr[3].length);
-      vBatchCurr = tagReadArr[5].substring(1,tagReadArr[5].length);
-
-      $('#vSapQrCurrent').val(vBatchCurr);
-      $("#vStatus").html(vItemNoCurr);
-      $('#tabletest tr').children('td, th').css('background-color','#0adeff');
-      $('#vSapQrReplace').jqxInput({disabled: false });
-      $('#vSapQrReplace').focus();
     }
     else
     {
@@ -257,22 +247,20 @@ function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
     //console.log(Q);
     var tagRead = Q;
     var tagReadArr = tagRead.split('@');
-    //var vBatchNo = tagReadArr[2];
-    //var vItemNo = tagReadArr[3];
-    //var vQty = tagReadArr[4];
+    var parsedData = {};
+    parsedData = GetDetailQRcode(Q);
+    //console.log(parsedData);
+    vItemNoRepl = parsedData["Itemcode"];
+    vBatchRepl = parsedData["PackageID"];
+    vQty = parsedData["Qty"];
 
     var vLentagReadArr = tagReadArr.length;
-    if(tagReadArr[1] == "SIIX20")
+    if(tagReadArr[1] == "SIIX20" || tagReadArr[1] == "06")
     {
-      vItemNoRepl = tagReadArr[3];
-      vBatchRepl = tagReadArr[2];
-      vQty = tagReadArr[4];
-
       if(vItemNoRepl == vItemNoCurr && vBatchRepl != vBatchCurr)
       {
         $("#vStatus").html(vItemNoRepl);
         $('#vSapQrReplace').val(vBatchRepl);
-        //$('#tabletest tr').children('td, th').css('background-color','#08ca0e');
         insReplSMT(vLine,vTable,vItemNoRepl,vQty,vBatchCurr,vBatchRepl,vUserID);
       }
       else
@@ -287,31 +275,7 @@ function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
         $('#vSapQrReplace').jqxInput({disabled: true });
         $('#vSapQrReplace').val("");
       }
-    }else if(tagReadArr[1] == "06"){
-      vItemNoRepl = tagReadArr[3].substring(1,tagReadArr[3].length);
-      vBatchRepl = tagReadArr[5].substring(1,tagReadArr[5].length);
-      vQty = tagReadArr[4].substring(1,tagReadArr[4].length);
-
-      if(vItemNoRepl == vItemNoCurr && vBatchRepl != vBatchCurr)
-      {
-        $("#vStatus").html(vItemNoRepl);
-        $('#vSapQrReplace').val(vBatchRepl);
-        //$('#tabletest tr').children('td, th').css('background-color','#08ca0e');
-        insReplSMT(vLine,vTable,vItemNoRepl,vQty,vBatchCurr,vBatchRepl,vUserID);
-      }
-      else
-      {
-        $("#vStatus").html("Can't Insert");
-        $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
-
-        $('#vSapQrCurrent').jqxInput({disabled: false });
-        $('#vSapQrCurrent').val("");
-        $('#vSapQrCurrent').focus();
-
-        $('#vSapQrReplace').jqxInput({disabled: true });
-        $('#vSapQrReplace').val("");
-      }
-    }else
+    }else 
     {
       $('#vStatus').html('QR Not Match');
       $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
@@ -319,6 +283,37 @@ function insReplSMT(Line,Tables,Item,Qty,BatchCurr,BatchRepl,Emp) {
       $('#vSapQrReplace').val("");
       $('#vSapQrReplace').focus();
     }
+  }
+
+  function GetDetailQRcode(Q){
+    var tagReadArr = Q.split('@');
+    //console.log(tagReadArr);
+    var parsedData = {};
+
+    if(tagReadArr[1] == "06"){
+      for(var i = 0;i < tagReadArr.length; i++){
+        var element = tagReadArr[i];
+        if (element.startsWith("V")) {
+          parsedData["Vender"] = element.substring(1);
+        }else if (element.startsWith("P")) {
+          parsedData["Itemcode"] = element.substring(1);
+        }else if (element.startsWith("Q")) {
+          parsedData["Qty"] = element.substring(1);
+        }else if (element.startsWith("S")) {
+          parsedData["PackageID"] = element.substring(1);
+        }else if (element.startsWith("1T")) {
+          parsedData["MakerLot"] = element.substring(2);
+        }else if (element.startsWith("1P")) {
+          parsedData["ItemDESC"] = element.substring(2);
+        }
+      }
+    }else if(tagReadArr[1] == "SIIX20"){
+      parsedData["Itemcode"] = tagReadArr[3];
+      parsedData["PackageID"] = tagReadArr[2];
+      parsedData["Qty"] = tagReadArr[4];
+    }
+    
+    return parsedData;
   }
 
   function CheckMachine(Q){

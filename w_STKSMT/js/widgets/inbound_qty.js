@@ -95,15 +95,17 @@ var ReadTag = function(Q){
 
   var tagRead = Q;
   var tagReadArr = tagRead.split('@');
-  var vBatchNo = tagReadArr[2];
-  var vItemNo = tagReadArr[3];
-  var vQty; //= $("vQty").val();//tagReadArr[4];
+  var parsedData = {};
+  parsedData = GetDetailQRcode(Q);
+  //console.log(parsedData);
+  var vItemNo = parsedData["Itemcode"];
+  var vBatchNo = parsedData["PackageID"];
+  var vQty = parsedData["Qty"];
+
   var vLocation = $("#vLocation").val();
 
-  var vChkQR = tagReadArr.length;
-
-  if(vChkQR == 7){
-
+  if(tagReadArr[1] == "SIIX20" || tagReadArr[1] == "06")
+  {
     var pQty = $("#vQty").val();
     if(pQty == "0"){
       $("#vQty").val(tagReadArr[4]);
@@ -125,6 +127,37 @@ var ReadTag = function(Q){
     $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
   }
 };
+
+function GetDetailQRcode(Q){
+  var tagReadArr = Q.split('@');
+  //console.log(tagReadArr);
+  var parsedData = {};
+
+  if(tagReadArr[1] == "06"){
+    for(var i = 0;i < tagReadArr.length; i++){
+      var element = tagReadArr[i];
+      if (element.startsWith("V")) {
+        parsedData["Vender"] = element.substring(1);
+      }else if (element.startsWith("P")) {
+        parsedData["Itemcode"] = element.substring(1);
+      }else if (element.startsWith("Q")) {
+        parsedData["Qty"] = element.substring(1);
+      }else if (element.startsWith("S")) {
+        parsedData["PackageID"] = element.substring(1);
+      }else if (element.startsWith("1T")) {
+        parsedData["MakerLot"] = element.substring(2);
+      }else if (element.startsWith("1P")) {
+        parsedData["ItemDESC"] = element.substring(2);
+      }
+    }
+  }else if(tagReadArr[1] == "SIIX20"){
+    parsedData["Itemcode"] = tagReadArr[3];
+    parsedData["PackageID"] = tagReadArr[2];
+    parsedData["Qty"] = tagReadArr[4];
+  }
+  
+  return parsedData;
+}
 
 var UpdateOnHand = function(Batch,Qty) {
    var act = 'UpdateOnHand';
