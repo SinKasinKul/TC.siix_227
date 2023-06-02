@@ -4,6 +4,7 @@
     <ul>
         <li style="font-weight: bold;">Traceability REPORT</li>
         <li style="font-weight: bold;">Traceability JUDGEMENT</li>
+        <li style="font-weight: bold;">Traceability NAS</li>
     </ul>
     <div id='alldailyIncome_f' style="font-size: 15px; font-family: Verdana; font-weight: bold;">
             <table align="center" width="60%">
@@ -48,7 +49,7 @@
                 <td><a target="_blank" href="http://200.100.100.228/w_report/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-bullhorn"style="font-size:50px;color:#33B7B6;text-shadow:2px 2px 4px #42F1A7;"></i><b><br><br>VTEC,TTET </B></a></td>
                 <td><a target="_blank" href="http://200.100.100.228/w_report/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-pushpin"style="font-size:50px;color:#B23100;text-shadow:2px 2px 4px #FF9900;"></i><b><br><br>SUMITOMO </B></a></td>
                 <td><a target="_blank" href="http://200.100.100.228/w_report/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-tower"style="font-size:50px;color:#58007C;text-shadow:2px 2px 4px #FF99FF;"></i><b><br><br>USHIN </B></a></td>
-                <td><a target="_blank" href="http://200.100.100.228/w_report/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-scissors"style="font-size:50px;color:#5D6D7E;text-shadow:2px 2px 4px #979A9A;"></i><b><br><br>NTC </B></a></td>
+                <td><a target="_blank" href="http://200.100.100.228/w_report/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-scissors"style="font-size:50px;color:#5D6D7E;text-shadow:2px 2px 4px #979A9A;"></i><b><br><br>NTC , SAWAFUJI </B></a></td>
                 <td><a target="_blank" href="http://200.100.100.228/w_report/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-cd"style="font-size:50px;color:#000000;text-shadow:2px 2px 4px #D2D0CF;"></i><b><br><br>PENSTON </B></a></td>
 
                 <td></td>
@@ -169,9 +170,33 @@
         <td></td>
         <td></td>
       </tr>
-    </div>
+
     </table>
-</div>
+ </div>
+
+
+<div id='alldailyIncome_f' style="font-size: 15px; font-family: Verdana; font-weight: bold;">
+  <table align="center" width="60%">
+     <tr align="center">
+      <td align='left'><h4><B><a style="font-size:30px;color:red;">ALL NAS</h4></td>
+    </tr>
+    <tr align="center">
+      <td><a target="_blank" href="http://10.0.102.6:5000/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-hdd" style="font-size:50px;color:#58007C;text-shadow:2px 2px 4px #FF99FF;"></i><b><br><br>AOI Panasonic<br>( 10.0.102.6 ) </B></a></td>
+      <td><a target="_blank" href="http://200.100.100.90:5000/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-hdd" style="font-size:50px;color:#dc4028;text-shadow:2px 2px 4px #c9242b; "></i><b><br><br>BK_Data Traceability </B></a></td>
+      <td><a target="_blank" href="http://10.0.102.23:5000/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-hdd" style="font-size:50px;color:#dc4028;text-shadow:2px 2px 4px #c9242b;"></i><b><br><br>BK_Office TC </B></a></td>
+      <td><a target="_blank" href="https://200.100.100.91/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-hdd"style="font-size:50px;color:#dc4028;;text-shadow:2px 2px 4px #c9242b;"></i><b><br><br>BK_Data XML File</B></a></td>
+      <td><a target="_blank" href="http://10.0.110.254:5000/" class="btn text-muted text-center btn.bg-light siixmenu"><B><i class="glyphicon glyphicon-hdd"style="font-size:50px;color:#dc4028;;text-shadow:2px 2px 4px #c9242b;"></i><b><br><br>SERVER ROOM IT</B></a></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr align="center">
+     <td align='left'>&nbsp;</td>
+     <td></td>
+     <td></td>
+     <td></td>
+   </tr>
+   </div>
+   </table>
 <?php require_once('footer.php');?>
 </body>
 <input type="hidden" id="idTab" value="0" readonly="">

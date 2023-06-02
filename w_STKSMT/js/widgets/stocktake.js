@@ -159,18 +159,18 @@ function GetDetailQRcode(Q){
 
   if(tagReadArr[1] == "06"){
     for(var i = 0;i < tagReadArr.length; i++){
-      var element = tagReadArr[i];
-      if (element.startsWith("V")) {
+      element = tagReadArr[i];
+      if (element.substring(0,1) == "V") {
         parsedData["Vender"] = element.substring(1);
-      }else if (element.startsWith("P")) {
+      }else if (element.substring(0,1) == "P") {
         parsedData["Itemcode"] = element.substring(1);
-      }else if (element.startsWith("Q")) {
+      }else if (element.substring(0,1) == "Q") {
         parsedData["Qty"] = element.substring(1);
-      }else if (element.startsWith("S")) {
+      }else if (element.substring(0,1) == "S") {
         parsedData["PackageID"] = element.substring(1);
-      }else if (element.startsWith("1T")) {
+      }else if (element.substring(0,2) == "1T") {
         parsedData["MakerLot"] = element.substring(2);
-      }else if (element.startsWith("1P")) {
+      }else if (element.substring(0,2) == "1P") {
         parsedData["ItemDESC"] = element.substring(2);
       }
     }

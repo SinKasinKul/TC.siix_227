@@ -1,0 +1,36 @@
+<div class="container">
+    <br>
+      <div class="row">
+        <div class="col-xs-12">
+  
+          <div class="card border-primary mb-12">
+            <div class="card-header text-white bg-primary">
+              <h3>SMT Line :: <span id="vSMTLine"><?=$_GET['Line']?></span></h3>
+            </div>
+            <div class="card-body">
+              <div class="row center">
+                <div class="col-6">
+                    <input type="text" id="pTechID" value="">
+                </div>
+                <div class="col-6">
+                    <input type="text" id="pTechName" value="" readonly>
+                </div>
+                <div class="col-6">
+                    <div style="font-size: 12px; font-family: Verdana;" id="ListMachine"></div>
+                </div>
+                <div class="col-12">
+                    <div style="font-size: 12px; font-family: Verdana;" id="IssueMachine"></div>
+                </div>
+                <div class="col-12">
+                    <input type="text" id="pIssueOther" value="" >
+                </div>
+              </div><br>
+              <div id="gridJobList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+  </div>
+  <script type="text/javascript" src="js/widgets/tech.js"></script>
+  

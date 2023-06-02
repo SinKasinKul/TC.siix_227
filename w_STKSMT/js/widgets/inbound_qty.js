@@ -130,9 +130,7 @@ var ReadTag = function(Q){
 
 function GetDetailQRcode(Q){
   var tagReadArr = Q.split('@');
-  //console.log(tagReadArr);
   var parsedData = {};
-
   if(tagReadArr[1] == "06"){
     for(var i = 0;i < tagReadArr.length; i++){
       var element = tagReadArr[i];
@@ -151,11 +149,10 @@ function GetDetailQRcode(Q){
       }
     }
   }else if(tagReadArr[1] == "SIIX20"){
-    parsedData["Itemcode"] = tagReadArr[3];
+    parsedData["Itemcode"] = (tagReadArr[3].length == 18) ? tagReadArr[3].substring(8) : tagReadArr[3];
     parsedData["PackageID"] = tagReadArr[2];
     parsedData["Qty"] = tagReadArr[4];
   }
-  
   return parsedData;
 }
 

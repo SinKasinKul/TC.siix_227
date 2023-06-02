@@ -98,6 +98,7 @@
     <tr>
     <td width="50%" bgcolor="#0099FF" class="whileXXL" align="right" >&nbsp;&nbsp;&nbsp;<?=HEADER_NAME?></td>
     <td width="50%" bgcolor="#0099FF" class="white18" align="right" >&nbsp;&nbsp;&nbsp;<?=HEADER_NAME_II?></td>
+    <!--td width="50%" bgcolor="#0099FF" class="white18" align="right" >&nbsp;&nbsp;&nbsp;<?=HEADER_NAME_III?></td-->
     <!--login_page-->
   </tr>
   </tr>
