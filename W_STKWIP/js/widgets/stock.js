@@ -41,25 +41,27 @@ $("#gridOnHandTotal").jqxGrid(
             theme: "orange",
             selectionmode: 'multiplerowsextended',
             columns: [
-              {
+             /* {
                     text: '#', sortable: false, filterable: false, editable: false,
                     groupable: false, draggable: false, resizable: false,
                     datafield: '', columntype: 'number', width: 30,
                     cellsrenderer: function (row, column, value) {
                         return "<div style='margin:4px;'>" + (value + 1) + "</div>";
                     }
-              },
-              { text: 'Cus', datafield: 'CUS', width: 90, align: 'center', cellsalign: 'center', filtertype: 'checkedlist'},
+              },*/
+              { text: 'Cus', datafield: 'CUS', width: 60, align: 'center', cellsalign: 'center', filtertype: 'checkedlist'},
               { text: 'Item Code', datafield: 'ITEMCD', width: 100, align: 'center', cellsalign: 'center', aggregates: ['count']},
               { text: 'Model', datafield: 'ITEMDESC', minwidth: 120, align: 'center', cellsalign: 'center'},
-              { text: 'Lot', datafield: 'Total_Reels', width: 80, align: 'center', cellsalign: 'right',cellsformat: 'F0', aggregates: ['sum']},
-              { text: 'Total Qty', datafield: 'Total_Qty', width: 90, align: 'center', cellsalign: 'right',cellsformat: 'F0', aggregates: ['sum']}
+              { text: 'Lot', datafield: 'Total_Lot', width: 60, align: 'center', cellsalign: 'right',cellsformat: 'F0', aggregates: ['sum']},
+              { text: 'Total Qty', datafield: 'Total_Qty', width: 90, align: 'center', cellsalign: 'right',cellsformat: 'F0', aggregates: ['sum']},
+              { text: 'WIP Status', datafield: 'WIP_STATUS', width: 100, align: 'center', cellsalign: 'center', filtertype: 'checkedlist'}
             ]
         });
   $("#gridOnHandTotal").on("rowselect", function (event){
     var ITEMCD = event.args.row.ITEMCD;
+    var WIP_STATUS = event.args.row.WIP_STATUS;
     $('#vItemCD').val(ITEMCD);
-    gridOnHandDetail(ITEMCD);
+    gridOnHandDetail(ITEMCD,WIP_STATUS);
   });
 gridOnHandTotal();
 
@@ -90,7 +92,7 @@ $("#gridOnHandDetail").jqxGrid(
               { text: 'Model', datafield: 'ITEMDESC', minwidth: 120, align: 'center', cellsalign: 'center', aggregates: ['count']},
               { text: 'Lot No.', datafield: 'BATCH', width: 90, align: 'center', cellsalign: 'center'},
               { text: 'Qty', datafield: 'QTY', width: 80, align: 'center', cellsalign: 'right',cellsformat: 'F0'},
-              //{ text: 'Cart', datafield: 'CART', width: 100, align: 'center', cellsalign: 'center', filtertype: 'checkedlist'},
+              { text: 'WIP Status', datafield: 'WIP_STATUS', width: 100, align: 'center', cellsalign: 'center', filtertype: 'checkedlist'},
               { text: 'Location', datafield: 'LOCATION', width: 100, align: 'center', cellsalign: 'center', filtertype: 'checkedlist'},
               { text: 'Date', datafield: 'DATE_UPDATE', width: 150, align: 'center', cellsalign: 'center'},
               { text: 'Shelf Life', datafield: 'SHELFLIFE', width: 90, align: 'center', cellsalign: 'center'}
@@ -145,7 +147,7 @@ $("#gridOnHandDetail").jqxGrid(
                 { text: 'Lot No.', datafield: 'BATCH', width: 100, align: 'center', cellsalign: 'center'},
                 { text: 'IN Qty', datafield: 'IN_QTY', width: 90, align: 'center', cellsalign: 'right', cellsrenderer: CHK_QTY,cellsformat: 'F0', aggregates: ['sum']},
                 { text: 'OUT Qty', datafield: 'OUT_QTY', width: 90, align: 'center', cellsalign: 'right', cellsrenderer: CHK_QTY,cellsformat: 'F0', aggregates: ['sum']},
-                //{ text: 'Cart', datafield: 'CART', width: 100, align: 'center', cellsalign: 'center'},
+                { text: 'WIP Status', datafield: 'WIP_STATUS', width: 100, filtertype: 'checkedlist', align: 'center', cellsalign: 'center'},
                 { text: 'Location', datafield: 'LOCATION', width: 100, filtertype: 'checkedlist', align: 'center', cellsalign: 'center'},
                 { text: 'Operator', datafield: 'STAFF_NAME', width: 100, align: 'center', cellsalign: 'center'},
                 { text: 'Date', datafield: 'DATE_UPDATE', width: 150, align: 'center', cellsalign: 'center'}
@@ -167,8 +169,9 @@ function gridOnHandTotal() {
                     { name: 'CUS', type: 'string' },
                     { name: 'ITEMCD', type: 'string' },
                     { name: 'ITEMDESC', type: 'string' },
-                    { name: 'Total_Reels', type: 'string' },
-                    { name: 'Total_Qty', type: 'number' }
+                    { name: 'Total_Lot', type: 'string' },
+                    { name: 'Total_Qty', type: 'number' },
+                    { name: 'WIP_STATUS', type: 'string' }
                 ],
                 url: url,
                 root: 'data'
@@ -177,9 +180,9 @@ function gridOnHandTotal() {
              $("#gridOnHandTotal").jqxGrid({source: dataAdapter});
   }
 
-function gridOnHandDetail(ItemCD) {
+function gridOnHandDetail(ItemCD,WIP_STATUS) {
             var act = 'jsonOnHandDetail';
-            var url = "main.class.php?action="+act+"&ItemCD="+ItemCD;
+            var url = "main.class.php?action="+act+"&ItemCD="+ItemCD+"&WIPSTATUS="+WIP_STATUS;
 
             var source =
             {
@@ -191,7 +194,7 @@ function gridOnHandDetail(ItemCD) {
                     { name: 'ITEMDESC', type: 'string' },
                     { name: 'BATCH', type: 'string' },
                     { name: 'QTY', type: 'number' },
-                    { name: 'CART', type: 'string' },
+                    { name: 'WIP_STATUS', type: 'string' },
                     { name: 'LOCATION', type: 'string' },
                     { name: 'DATE_UPDATE', type: 'string' },
                     { name: 'SHELFLIFE', type: 'string' }
@@ -220,6 +223,7 @@ function gridOnHandHis(ItemCD) {
                     { name: 'CART', type: 'string' },
                     { name: 'LOCATION', type: 'string' },
                     { name: 'STAFF_NAME', type: 'string' },
+                    { name: 'WIP_STATUS', type: 'string' },
                     { name: 'DATE_UPDATE', type: 'string' },
                 ],
                 url: url,

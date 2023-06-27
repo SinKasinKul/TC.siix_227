@@ -20,9 +20,28 @@ $(document).ready(function () {
     if ( event.which == 13 ) {
       $('#vLocation').jqxInput({disabled: true });
       var Loc = $("#vLocation").val();
+	  Loc = Loc.replace(' ', '');
+	  $("#vLocation").val(Loc);
       CheckLocation(Loc);
     }
   });
+  var vWIPStatus_source = [
+
+    "Wait T/U",
+    "Wait Cutting",
+    "Wait F/T",
+    "Wait Coating",
+    "Wait ICT",
+    "Wait Assy",
+    "Wait S/T"
+    ];
+  $("#vWIPStatus").jqxDropDownList({ source: vWIPStatus_source, placeHolder: "WIP Status", width: 110, height: 30});
+  $('#vWIPStatus').on('select', function (event)
+  {
+        $('#vSapQr').jqxInput({disabled: false });
+        $("#vSapQr").focus();   
+  });
+  
   $("#vSapQr").jqxInput({ height: 25, width: 100, minLength: 1});
   $("#vSapQr").keypress(function( event ) {
     if ( event.which == 13 ) {
@@ -55,7 +74,7 @@ $(document).ready(function () {
   });
 
   //chkUserID();
-
+  $('#vWIPStatus').jqxDropDownList({disabled: true });
   $("#vLocation").jqxInput({disabled: true });
   $("#vSapQr").jqxInput({disabled: true });
   $("#vQty").jqxInput({disabled: true });
@@ -128,8 +147,11 @@ var CheckLocation = function(Loc) {
                   $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
                 }
                 else{
-                  $('#vSapQr').jqxInput({disabled: false });
-                  $("#vSapQr").focus();
+                  $('#vWIPStatus').jqxDropDownList({disabled: false });
+                  $("#vWIPStatus").focus();
+                  $("#vWIPStatus").jqxDropDownList('open' ); 
+                  //$('#vSapQr').jqxInput({disabled: false });
+                  //$("#vSapQr").focus();
 
                   $('#vStatus').html(Location);
                   $('#tabletest tr').children('td, th').css('background-color','#0adeff');
@@ -193,6 +215,7 @@ var InsertInBound = function() {
   var vLot = $("#vLot").val();
   var vQty = $("#vQty").val();
   var vLocation = $("#vLocation").val();
+  var vWIPStatus = $("#vWIPStatus").val();
   var vEmp = $('#vEmp').val();
    var act = 'insertInBound';
    $.ajax({
@@ -204,6 +227,7 @@ var InsertInBound = function() {
              + "&Lot=" + vLot
              + "&Qty=" + vQty
              + "&Location=" + vLocation
+             + "&WIPStatus=" + vWIPStatus
              + "&Emp=" + vEmp,
              success: function(data) {
                if (data.response == 'success') {

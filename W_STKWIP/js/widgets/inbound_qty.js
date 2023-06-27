@@ -15,25 +15,70 @@ $(document).ready(function () {
     }
   });
 
+  $("#vLocation").jqxInput({ height: 25, width: 100, minLength: 1});
+  $("#vLocation").keypress(function( event ) {
+    if ( event.which == 13 ) {
+      $('#vLocation').jqxInput({disabled: true });
+      var Loc = $("#vLocation").val();
+	  Loc = Loc.replace(' ', '');
+	  $("#vLocation").val(Loc);
+      CheckLocation(Loc);
+    }
+  });
+  var vWIPStatus_source = [
+
+    "Wait T/U",
+    "Wait Cutting",
+    "Wait F/T",
+    "Wait Coating",
+    "Wait ICT",
+    "Wait Assy",
+    "Wait S/T"
+    ];
+  $("#vWIPStatus").jqxDropDownList({ source: vWIPStatus_source, placeHolder: "WIP Status", width: 110, height: 30});
+  $('#vWIPStatus').on('select', function (event)
+  {
+        $('#vSapQr').jqxInput({disabled: false });
+        $("#vSapQr").focus();   
+  });
+  
   $("#vSapQr").jqxInput({ height: 25, width: 100, minLength: 1});
   $("#vSapQr").keypress(function( event ) {
     if ( event.which == 13 ) {
       $('#vSapQr').jqxInput({disabled: true });
-      //var Q = $("#vSapQr").val();
-      //ReadTag(Q);
-      $('#vQty').focus();
-    }
-  });
-
-  $("#vQty").jqxInput({ height: 25, width: 100, minLength: 1});
-  $("#vQty").keypress(function( event ) {
-    if ( event.which == 13 ) {
       var Q = $("#vSapQr").val();
       ReadTag(Q);
     }
   });
+  $("#vLot").jqxInput({ height: 25, width: 100, minLength: 1});
+  $("#vQty").jqxInput({ height: 25, width: 100, minLength: 1});
+  $("#vQty").keypress(function( event ) {
+    if ( event.which == 13 ) {
+      InsertInBound();
+    }
+  });
 
-  chkUserID();
+  $("#bcLocation").click(function( event ) {
+      var user = $("#vEmp").val();
+      if(user != ''){
+        $('#vSapQr').jqxInput({disabled: true });
+        $("#vSapQr").val('');
+        $('#vLocation').jqxInput({disabled: false });
+        $("#vLocation").val('');
+        $("#vLocation").focus();
+      }
+      else{
+        $("#vEmp").focus();
+      }
+
+  });
+
+  //chkUserID();
+  $('#vWIPStatus').jqxDropDownList({disabled: true });
+  $("#vLocation").jqxInput({disabled: true });
+  $("#vSapQr").jqxInput({disabled: true });
+  $("#vQty").jqxInput({disabled: true });
+  $("#vLot").jqxInput({disabled: true });
 });
 
 var CheckUser = function(user) {
@@ -61,7 +106,7 @@ var CheckUser = function(user) {
                    $("#vEmp").val(MainUserChk);
                    vUserID = MainUserID;
                    chkUserID();
-                   $("#vSapQr").focus();
+                   $("#vLocation").focus();
                  }
                }else{
                  $('#vEmp').val("");
@@ -78,43 +123,82 @@ var CheckUser = function(user) {
    });
 }
 
+var CheckLocation = function(Loc) {
+   var act = 'ChkLocation';
+   var Location = Loc;
+   $.ajax({
+             type: "GET",
+             url: "main.class.php",
+             dataType: "json",
+             data: "action=" + act
+             + "&Location=" + Location,
+             success: function(data) {
+               if (data.response == 'success') {
+                 var Data = data.data[0];
+                 var Result = Data.Result;
+                 var RSts = Data.RSts;
+
+                if(RSts == '0'){
+                  $('#vLocation').jqxInput({disabled: false });
+                  $("#vLocation").val("");
+                  $("#vLocation").focus();
+
+                  $('#vStatus').html("X");
+                  $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
+                }
+                else{
+                  $('#vWIPStatus').jqxDropDownList({disabled: false });
+                  $("#vWIPStatus").focus();
+                  $("#vWIPStatus").jqxDropDownList('open' ); 
+                  //$('#vSapQr').jqxInput({disabled: false });
+                  //$("#vSapQr").focus();
+
+                  $('#vStatus').html(Location);
+                  $('#tabletest tr').children('td, th').css('background-color','#0adeff');
+                }
+              }
+             },
+             error: function functionName() {
+               $('#vLocation').val("");
+               $('#vLocation').focus();
+               $('#vLocation').jqxInput({disabled: false });
+             }
+
+   });
+}
+
 function chkUserID() {
   if (typeof vUserID == 'undefined'){
-    //$("#vLocation").jqxInput({disabled: true });
+    $("#vLocation").jqxInput({disabled: true });
     $("#vSapQr").jqxInput({disabled: true });
     $("#vQty").jqxInput({disabled: true });
   }
   else {
-    //$("#vLocation").jqxInput({disabled: false });
-    $("#vSapQr").jqxInput({disabled: false });
-    $("#vQty").jqxInput({disabled: false });
+    $("#vLocation").jqxInput({disabled: false });
+    //$("#vSapQr").jqxInput({disabled: false });
+    //$("#vQty").jqxInput({disabled: false });
   }
 };
 
 var ReadTag = function(Q){
 
   var tagRead = Q;
-  var tagReadArr = tagRead.split('@');
-  var vBatchNo = tagReadArr[2];
-  var vItemNo = tagReadArr[3];
-  var vQty; //= $("vQty").val();//tagReadArr[4];
+  var tagReadArr = tagRead.split('-');
+  var vTracking = tagReadArr[0];
+  var vLotNo = tagReadArr[1];
+
+
   var vLocation = $("#vLocation").val();
 
   var vChkQR = tagReadArr.length;
 
-  if(vChkQR == 7){
-
-    var pQty = $("#vQty").val();
-    if(pQty == "0"){
-      $("#vQty").val(tagReadArr[4]);
-      vQty = tagReadArr[4];
-    }
-    else{
-      vQty = $("#vQty").val();
-    }
-
-    $("#vSapQr").val(vBatchNo);
-    UpdateOnHand(vBatchNo,vQty);
+  if(vChkQR == 2){
+    $("#vSapQr").val(vTracking);
+    $("#vLot").val(vLotNo);
+    $("#vSapQr").jqxInput({disabled: true });
+    //InsertInBound(vTracking,vLotNo,vQty,vLocation,vUserID);
+    $("#vQty").jqxInput({disabled: false });
+    $("#vQty").focus();
   }
   else{
     $("#vSapQr").jqxInput({disabled: false });
@@ -126,15 +210,25 @@ var ReadTag = function(Q){
   }
 };
 
-var UpdateOnHand = function(Batch,Qty) {
-   var act = 'UpdateOnHand';
+var InsertInBound = function() {
+  var vTracking = $("#vSapQr").val();
+  var vLot = $("#vLot").val();
+  var vQty = $("#vQty").val();
+  var vLocation = $("#vLocation").val();
+  var vWIPStatus = $("#vWIPStatus").val();
+  var vEmp = $('#vEmp').val();
+   var act = 'STBL_STK_INS_INBOUND_LOT';
    $.ajax({
              type: "GET",
              url: "main.class.php",
              dataType: "json",
              data: "action=" + act
-             + "&Batch=" + Batch
-             + "&Qty=" + Qty,
+             + "&Tracking=" + vTracking
+             + "&Lot=" + vLot
+             + "&Qty=" + vQty
+             + "&Location=" + vLocation
+             + "&WIPStatus=" + vWIPStatus
+             + "&Emp=" + vEmp,
              success: function(data) {
                if (data.response == 'success') {
                  var Data = data.data[0];
@@ -147,9 +241,11 @@ var UpdateOnHand = function(Batch,Qty) {
                   //$("#vLocation").focus();
 
                   $('#vSapQr').jqxInput({disabled: false });
+                  $('#vQty').jqxInput({disabled: true });
                   $("#vSapQr").val("");
+                  $("#vLot").val("");
+                  $("#vQty").val("");
                   $("#vSapQr").focus();
-                  $("#vQty").val("0");
 
                   $('#vStatus').html(Result);
                   $('#tabletest tr').children('td, th').css('background-color','#ff0a0a');
@@ -158,9 +254,15 @@ var UpdateOnHand = function(Batch,Qty) {
                   $('#vStatus').html(Result);
                   $('#tabletest tr').children('td, th').css('background-color','#08ca0e');
 
+                  //$("#vLocation").val("");
+                  //$('#vLocation').jqxInput({disabled: false });
+                  //$("#vLocation").focus();
+
                   $("#vSapQr").val("");
-                  $("#vQty").val("0");
+                  $("#vLot").val("");
+                  $("#vQty").val("");
                   $('#vSapQr').jqxInput({disabled: false });
+                  $('#vQty').jqxInput({disabled: true });
                   $("#vSapQr").focus();
 
                 }
@@ -170,7 +272,6 @@ var UpdateOnHand = function(Batch,Qty) {
                $('#vSapQr').jqxInput({disabled: false });
                $("#vSapQr").val("");
                $("#vSapQr").focus();
-               $("#vQty").val("0");
              }
 
    });

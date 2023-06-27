@@ -35,14 +35,39 @@ class STKWIP
     $Lot = $frm['Lot'];
     $Qty = $frm['Qty'];
     $Location = $frm['Location'];
+    $WIPStatus = $frm['WIPStatus'];
     $Emp = $frm['Emp'];
 
-    $stmt = "EXEC [STBL_STOCK_WIP].[dbo].[STBL_STK_INS_INBOUND] ?, ?, ?, ?, ?";
+    $stmt = "EXEC [STBL_STOCK_WIP].[dbo].[STBL_STK_INS_INBOUND] ?, ?, ?, ?, ?, ?";
     $params = array(
       array($Tracking, SQLSRV_PARAM_IN),
       array($Lot, SQLSRV_PARAM_IN),
       array($Qty, SQLSRV_PARAM_IN),
       array($Location, SQLSRV_PARAM_IN),
+      array($WIPStatus, SQLSRV_PARAM_IN),
+      array($Emp, SQLSRV_PARAM_IN)
+    );
+    $query = sqlsrv_query( $DB, $stmt, $params);
+    $d = Utility::jsonMSSQL($query);
+  }
+
+  public function STBL_STK_INS_INBOUND_LOT($frm)
+  {
+    $DB = connect_mssql::DB();
+    $Tracking = $frm['Tracking'];
+    $Lot = $frm['Lot'];
+    $Qty = $frm['Qty'];
+    $Location = $frm['Location'];
+    $WIPStatus = $frm['WIPStatus'];
+    $Emp = $frm['Emp'];
+
+    $stmt = "EXEC [STBL_STOCK_WIP].[dbo].[STBL_STK_INS_INBOUND_LOT] ?, ?, ?, ?, ?, ?";
+    $params = array(
+      array($Tracking, SQLSRV_PARAM_IN),
+      array($Lot, SQLSRV_PARAM_IN),
+      array($Qty, SQLSRV_PARAM_IN),
+      array($Location, SQLSRV_PARAM_IN),
+      array($WIPStatus, SQLSRV_PARAM_IN),
       array($Emp, SQLSRV_PARAM_IN)
     );
     $query = sqlsrv_query( $DB, $stmt, $params);
@@ -126,9 +151,11 @@ class STKWIP
   {
     $DB = connect_mssql::DB();
     $ItemCD = $frm['ItemCD'];
-    $stmt = "EXEC [STBL_STOCK_WIP].[dbo].[STBL_STK_SEC_OUTBOUND_DETAIL] ?";
+    $WIPSTATUS = $frm['WIPSTATUS'];
+    $stmt = "EXEC [STBL_STOCK_WIP].[dbo].[STBL_STK_SEC_OUTBOUND_DETAIL] ?, ?";
     $params = array(
       array($ItemCD, SQLSRV_PARAM_IN),
+      array($WIPSTATUS, SQLSRV_PARAM_IN)
     );
     $query = sqlsrv_query( $DB, $stmt, $params);
     Utility::jsonMSSQL($query);

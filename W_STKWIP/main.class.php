@@ -12,6 +12,9 @@ $stkwip = new stkwip;
 		case 'insertInBound':
 			$stkwip->InsInBound($_GET);
 			break;
+		case 'STBL_STK_INS_INBOUND_LOT':
+			$stkwip->STBL_STK_INS_INBOUND_LOT($_GET);
+			break;
 		case 'insertOutBound':
 			$stkwip->InsOutBound($_GET);
 			break;

@@ -3,7 +3,7 @@
 
 <div id='main_Tabs'>
     <ul>
-        <li style="color: #006600; font-weight: bold;">Jod Technician</li>
+        <li style="color: #006600; font-weight: bold;">Task Technician</li>
     </ul>
     <div>
           <?php require_once('html/tech.html');?>
